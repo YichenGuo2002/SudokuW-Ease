@@ -1,0 +1,17 @@
+{
+  "name": "SudokuW-Ease",
+  "version": "1.0.0",
+  "main": "main.js",
+  "repository": "https://github.com/YichenGuo2002/SudokuW-Ease.git",
+  "author": "Yichen Guo <yg2258@nyu.edu>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^23.1.1"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  }
+}
