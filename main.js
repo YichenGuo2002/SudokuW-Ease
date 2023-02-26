@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow} = require('electron')
 const path = require('path')
+// 设置菜单栏, win是窗口实例
+
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -28,3 +30,34 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+const menuTemplate = [{
+    label: '主页',
+    click() {
+      // 页面跳转方式一（推荐）
+      mainWindow.webContents.send('href', '/index');
+      // 页面跳转方式二
+      // mainWindow.loadURL(winURL+'#/index')
+    }
+  },
+  {
+    label: '测试页',
+    submenu: [
+      {
+        label: '第1页',
+        click() {
+          mainWindow.webContents.send('href', '/page1');
+        }
+      },
+      {
+        label: '第2页',
+        click() {
+          mainWindow.webContents.send('href', '/page2');
+        }
+      }
+    ]
+  }
+  ];
+  
+  var Menu = require('electron').Menu;
+  Menu.setApplicationMenu( Menu.buildFromTemplate(menuTemplate));
