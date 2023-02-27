@@ -30,3 +30,4 @@ tbd
 ## Deliverables: By the end of the project, what are your planned deliverables?
 tbd
 ## Project Record:
+ - Day1: created AI-based sudoku solver.

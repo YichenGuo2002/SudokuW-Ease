@@ -1,34 +1,60 @@
 #========
-digits   = '123456789'
-rows     = 'ABCDEFGHI'
-cols     = digits
-
-squares = []
 def cross(A, B):
     "Cross product of elements in A and elements in B."
     return [a+b for a in A for b in B]
-squares = cross(rows, cols)
 
-unitlist = ([cross(rows, c) for c in cols] +
-            [cross(r, cols) for r in rows] +
-            [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')])
+def setup(size):
+    global digits, rows, cols, squares, peers, units, unitlist
+    squares = []
+    units = {}
+    peers = {}
 
-units = {}
-for s in squares:
-    for u in unitlist:
-        if s in u:
-            if s not in units:
-                units[s] = []
-            units[s].append(u)
+    if(size == 4):
+        digits = '1234'
+        rows = 'ABCD'
+        cols = digits
+        unitlist = ([cross(rows, c) for c in cols] +
+                [cross(r, cols) for r in rows] +
+                [cross(rs, cs) for rs in ('AB','CD') for cs in ('12','45')])
+    elif(size == 9):
+        digits = '123456789'
+        rows = 'ABCDEFGHI'
+        cols = digits
+        unitlist = ([cross(rows, c) for c in cols] +
+                [cross(r, cols) for r in rows] +
+                [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')])
+    elif(size == 16):
+        digits = ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14', '15', '16']
+        rows = 'ABCDEDGHIJKLMNOP'
+        cols = digits
+        unitlist = ([cross(rows, c) for c in cols] +
+                [cross(r, cols) for r in rows] +
+                [cross(rs, cs) for rs in ('ABCD','EFGH','IJKL', 'MNOP') for cs in ('1234','5678',['9','10','11','12'],['13','14','15','16'])])
+    elif(size == 25):
+        digits = ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14', '15', '16', '17', '18', '19', '20', '21','22',
+                         '23', '24', '25']
+        rows ='ABCDEDGHIJKLMNOPQRSTUVWXY'
+        cols = digits
+        unitlist = ([cross(rows, c) for c in cols] +
+                [cross(r, cols) for r in rows] +
+                [cross(rs, cs) for rs in ('ABCDE','FGHIJ','KLMNO', 'PQRST', 'UVWXY') for cs in ('12345',['6','7','8','9','10'],['11','12','13','14','15'], ['16','17','18','19','20'], ['21','22','23','24','25'])])
+    else:
+        print("Wrong size")
 
-peers = {}
-for s in squares:
-    unit_set = set()
-    for unit in units[s]:
-        for square in unit:
-            if square != s:
-                unit_set.add(square)
-    peers[s] = unit_set
+    squares = cross(rows, cols)
+    for s in squares:
+        for u in unitlist:
+            if s in u:
+                if s not in units:
+                    units[s] = []
+                units[s].append(u)
+    for s in squares:
+        unit_set = set()
+        for unit in units[s]:
+            for square in unit:
+                if square != s:
+                    unit_set.add(square)
+        peers[s] = unit_set
 
 def test():
     "A set of unit tests."
@@ -50,7 +76,7 @@ def test():
 def grid_values(grid1):
     grid1_chars = []
     for c in grid1:
-        if c in digits or c in '0.':
+        if c in digits_9 or c in '0.':
             grid1_chars.append(c)
     assert len(grid1_chars) == 81
     grid1_values = {}
@@ -63,9 +89,9 @@ def parse_grid(grid):
     # Convert grid to a dict of possible values, {square: digits}, or
     # return False if a contradiction is detected."""
     # To start, every square can be any digit; then assign values from the grid.
-    values = dict((s, digits) for s in squares)
+    values = dict((s, digits_9) for s in squares)
     for s,d in grid_values(grid).items():
-        if d in digits and not assign(values, s, d):
+        if d in digits_9 and not assign(values, s, d):
             return False ## (Fail if we can't assign d to square s.)
     return values
 
@@ -107,8 +133,8 @@ def eliminate(values, s, d):
 def display(values):
     width = 1+max(len(values[s]) for s in squares)
     line = '+'.join(['-'*(width*3)]*3)
-    for r in rows:
-        print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in cols))
+    for r in rows_9:
+        print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in cols_9))
         if r in 'CF': 
             print(line)
     print()
@@ -134,4 +160,5 @@ def some(seq):
 
 if __name__ == '__main__':
     example_board = "4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......"
-    display(solve(example_board))
+    setup(25)
+    print(len(unitlist))
