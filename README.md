@@ -29,3 +29,4 @@ tbd
  - Allow user upload image to get a scanned sudoku. (CV)
 ## Deliverables: By the end of the project, what are your planned deliverables?
 tbd
+## Project Record:
