@@ -31,3 +31,5 @@ tbd
 tbd
 ## Project Record:
  - Day1: created AI-based sudoku solver.
+ - Day2: Adapted solver to all sudoku sizes.
+ - 

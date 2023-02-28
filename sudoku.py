@@ -1,4 +1,7 @@
 #========
+import math
+import time
+
 def cross(A, B):
     "Cross product of elements in A and elements in B."
     return [a+b for a in A for b in B]
@@ -8,6 +11,7 @@ def setup(size):
     squares = []
     units = {}
     peers = {}
+    unitlist = ()
 
     if(size == 4):
         digits = '1234'
@@ -15,7 +19,7 @@ def setup(size):
         cols = digits
         unitlist = ([cross(rows, c) for c in cols] +
                 [cross(r, cols) for r in rows] +
-                [cross(rs, cs) for rs in ('AB','CD') for cs in ('12','45')])
+                [cross(rs, cs) for rs in ('AB','CD') for cs in ('12','34')])
     elif(size == 9):
         digits = '123456789'
         rows = 'ABCDEFGHI'
@@ -25,19 +29,19 @@ def setup(size):
                 [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')])
     elif(size == 16):
         digits = ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14', '15', '16']
-        rows = 'ABCDEDGHIJKLMNOP'
+        rows = 'ABCDEFGHIJKLMNOP'
         cols = digits
-        unitlist = ([cross(rows, c) for c in cols] +
+        unitlist = ([cross(rows, [c]) for c in cols] +
                 [cross(r, cols) for r in rows] +
                 [cross(rs, cs) for rs in ('ABCD','EFGH','IJKL', 'MNOP') for cs in ('1234','5678',['9','10','11','12'],['13','14','15','16'])])
     elif(size == 25):
         digits = ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14', '15', '16', '17', '18', '19', '20', '21','22',
                          '23', '24', '25']
-        rows ='ABCDEDGHIJKLMNOPQRSTUVWXY'
+        rows ='ABCDEFGHIJKLMNOPQRSTUVWXY'
         cols = digits
-        unitlist = ([cross(rows, c) for c in cols] +
-                [cross(r, cols) for r in rows] +
-                [cross(rs, cs) for rs in ('ABCDE','FGHIJ','KLMNO', 'PQRST', 'UVWXY') for cs in ('12345',['6','7','8','9','10'],['11','12','13','14','15'], ['16','17','18','19','20'], ['21','22','23','24','25'])])
+        unitlist = ([cross(rows, [c]) for c in cols] +
+                    [cross(r, cols) for r in rows] +
+                    [cross(rs, cs) for rs in ('ABCDE','FGHIJ','KLMNO', 'PQRST', 'UVWXY') for cs in ('12345',['6','7','8','9','10'],['11','12','13','14','15'], ['16','17','18','19','20'], ['21','22','23','24','25'])])
     else:
         print("Wrong size")
 
@@ -56,42 +60,48 @@ def setup(size):
                     unit_set.add(square)
         peers[s] = unit_set
 
-def test():
+def test(size):
     "A set of unit tests."
-    assert len(squares) == 81
-    assert len(unitlist) == 27
+    assert len(squares) == size * size
+    assert len(unitlist) == size * 3
     assert all(len(units[s]) == 3 for s in squares)
-    assert all(len(peers[s]) == 20 for s in squares)
-    assert units['C2'] == [
-      ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2', 'H2', 'I2'],
-      ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9'],
-      ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']]
-    assert peers['C2'] == set(
-      ['A2', 'B2', 'D2', 'E2', 'F2', 'G2', 'H2', 'I2',
-       'C1', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9',
-       'A1', 'A3', 'B1', 'B3'])
+    assert all(len(peers[s]) == (2*size-2+(math.sqrt(size)-1)**2) for s in squares)
+    # length of peers for sudoku of any size is 2n-2+(sqrt(n)-1)^2.
     print('All tests pass.')
-# =============Step 1 resulved
 
-def grid_values(grid1):
+# ============= Question setup
+
+def grid_values(grid1, size):
     grid1_chars = []
     for c in grid1:
-        if c in digits_9 or c in '0.':
+        if c in digits or c in '0.*':
             grid1_chars.append(c)
-    assert len(grid1_chars) == 81
+    assert len(grid1_chars) == size * size
+    grid1_values = {}
+    for k, v in zip(squares, grid1_chars):
+        grid1_values[k] = v
+    return grid1_values
+
+def grid_values_separated(grid1, size, separator): # if each value is separated by comma or anything
+    grid1_divided = grid1.split(separator)
+    grid1_chars = []
+    for c in grid1_divided:
+        if c in digits or c in '0.*':
+            grid1_chars.append(c)
+    assert len(grid1_chars) == size * size
     grid1_values = {}
     for k, v in zip(squares, grid1_chars):
         grid1_values[k] = v
     return grid1_values
 
 
-def parse_grid(grid):
+def parse_grid(grid, size):
     # Convert grid to a dict of possible values, {square: digits}, or
     # return False if a contradiction is detected."""
     # To start, every square can be any digit; then assign values from the grid.
-    values = dict((s, digits_9) for s in squares)
-    for s,d in grid_values(grid).items():
-        if d in digits_9 and not assign(values, s, d):
+    values = dict((s, digits) for s in squares)
+    for s,d in grid_values(grid, size).items():
+        if d in digits and not assign(values, s, d):
             return False ## (Fail if we can't assign d to square s.)
     return values
 
@@ -130,16 +140,22 @@ def eliminate(values, s, d):
                 return False
     return values
 
-def display(values):
+def display(values, size):
     width = 1+max(len(values[s]) for s in squares)
-    line = '+'.join(['-'*(width*3)]*3)
-    for r in rows_9:
-        print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in cols_9))
+    line = '+'.join(['-'*(width*int(math.sqrt(size)))]*int(math.sqrt(size)))
+    for r in rows:
+        print(''.join(values[r+c].center(width)+('|' if c in '36' else '') for c in cols))
         if r in 'CF': 
             print(line)
     print()
 
-def solve(grid): return search(parse_grid(grid))
+def solve(grid, size): 
+    setup(size)
+    result = {}
+    start_time = time.time()
+    result['solution'] = search(parse_grid(grid, size))
+    result['time'] = time.time() - start_time
+    return result
 
 def search(values):
     # "Using depth-first search and propagation, try all possible values."
@@ -159,6 +175,6 @@ def some(seq):
     return False
 
 if __name__ == '__main__':
-    example_board = "4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......"
-    setup(25)
-    print(len(unitlist))
+    example_board = """800000000/003600000/070090200/050007000/000045700/000100030/001000068/008500010/090000400"""
+    print(solve(example_board,9)['solution'])
+    print(solve(example_board,9)['time'])
