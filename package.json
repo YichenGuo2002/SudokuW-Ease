@@ -1,17 +1,26 @@
 {
   "name": "SudokuW-Ease",
   "version": "1.0.0",
-  "main": "main.js",
-  "repository": "https://github.com/YichenGuo2002/SudokuW-Ease.git",
   "author": "Yichen Guo <yg2258@nyu.edu>",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^23.1.1"
-  },
   "scripts": {
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
     "start": "electron ."
   },
+  "main": "background.js",
   "dependencies": {
+    "@vue/cli-service": "^5.0.8",
     "vue": "^3.2.47"
-  }
+  },
+  "devDependencies": {
+    "electron": "^23.1.1",
+    "electron-devtools-installer": "^3.1.0",
+    "tailwindcss": "0.7.4",
+    "vue-cli-plugin-electron-builder": "~2.1.1",
+    "vue-router": "^4.1.6"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/YichenGuo2002/SudokuW-Ease.git"
 }
