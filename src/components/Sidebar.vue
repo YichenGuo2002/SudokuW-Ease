@@ -96,7 +96,7 @@
         </div>
     </nav>
 
-    <div id="user-panel" class = "ml-48 h-16 bg-white text-black fixed items-center w-right flex flex-row-reverse p-2">
+    <div id="user-panel" class = "ml-48 h-16 bg-white text-black fixed items-center w-right flex flex-row-reverse p-2 border-b border-black">
         <div id="user-dropdown" class = "relative flex-initial ml-6">
             <button @click = "isOpen = !isOpen" class = "h-8 w-8">
                     <svg version="1.0"
