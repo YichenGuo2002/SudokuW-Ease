@@ -1,7 +1,10 @@
 <template>
-    <div id="nav" class="w-48 bg-white text-black fixed min-h-screen pt-16">
+    <nav id="nav" class="w-48 bg-white text-black fixed min-h-screen pt-2 pb-2 flex flex-col justify-between border-r border-black">
         <div class = "sidebar-icons flex flex-col items-center">
-            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <div class = "h-12">
+                <img src ="../assets/sudoku_logo.png" class = "h-12"/>
+            </div>
+            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mt-4 mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -19,9 +22,9 @@
                 812 830 0 36 -19 57 -53 57 -29 0 -105 -73 -855 -823z"/>
                 </g>
                 </svg>
-                <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
+                <router-link :to="'/'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                 version="1.1" id="Layer_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 250 250" 
                 enable-background="new 0 0 250 250" xml:space="preserve">  
@@ -30,7 +33,7 @@
                 </svg>
                 <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Find Sudoku&nbsp;&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
                 preserveAspectRatio="xMidYMid meet">
@@ -57,7 +60,7 @@
                 </svg>
                 <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Upload Image&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
                 preserveAspectRatio="xMidYMid meet">
@@ -86,9 +89,14 @@
                 <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;About Creator</router-link>
             </button>
         </div>
-    </div>
+        <div id = "copyright" class = "flex flex-col pl-2">
+            <p class = "pt-1">About/Press/Copyright</p>
+            <p class = "pt-1">Contact Us/Creators</p>
+            <h6>©2023 Yichen Guo LLC</h6>
+        </div>
+    </nav>
 
-    <div id="user-panel" class = "ml-48 h-12 bg-white text-black fixed items-center w-right flex flex-row-reverse p-5">
+    <div id="user-panel" class = "ml-48 h-16 bg-white text-black fixed items-center w-right flex flex-row-reverse p-2">
         <div id="user-dropdown" class = "relative flex-initial ml-6">
             <button @click = "isOpen = !isOpen" class = "h-8 w-8">
                     <svg version="1.0"
