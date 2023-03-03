@@ -1,5 +1,5 @@
 <template>
-    <div class = "ml-64 bg-white text-black flex-1">
+    <div class = "ml-48 mt-12 bg-white text-black flex-1">
         <p>Sophie had always been a bit overweight, and she had tried all the usual methods of losing weight - dieting, exercise, and even going to a nutritionist. But no matter how hard she tried, she always seemed to put the weight back on. That was until she discovered funky soda, a new kind of soft drink that promised to help her lose weight.
 
 At first, Sophie was skeptical. She had tried so many fad diets and weight loss products in the past, and none of them had worked. But she decided to give funky soda a try anyway. After all, what did she have to lose?

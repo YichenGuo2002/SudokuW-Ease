@@ -1,7 +1,7 @@
 <template>
-    <div id="nav" class="w-64 bg-white text-black fixed min-h-screen pt-8">
-        <div class = "sidebar-icons">
-            <div class="sidebar-icon flex items-center px-4 py-2 text-black cursor-pointer bg-white hover:bg-grey-lighter">
+    <div id="nav" class="w-48 bg-white text-black fixed min-h-screen pt-16">
+        <div class = "sidebar-icons flex flex-col items-center">
+            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -19,13 +19,18 @@
                 812 830 0 36 -19 57 -53 57 -29 0 -105 -73 -855 -823z"/>
                 </g>
                 </svg>
-                <div>&nbsp;&nbsp;Solve</div>
-            </div>
-            <div class="sidebar-icon flex items-center px-4 py-2 text-black cursor-pointer bg-white hover:bg-grey-lighter">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 250 250" enable-background="new 0 0 250 250" xml:space="preserve">  <image id="image0" width="250" height="250" x="0" y="0" href="data:image/png;base64,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"/></svg>
-                <div>&nbsp;&nbsp;Discover</div>
-            </div>
-            <div class="sidebar-icon flex items-center px-4 py-2 text-black cursor-pointer bg-white hover:bg-grey-lighter">
+                <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
+            </button>
+            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" id="Layer_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 250 250" 
+                enable-background="new 0 0 250 250" xml:space="preserve">  
+                <image id="image0" width="250" height="250" x="0" y="0" 
+                href="data:image/png;base64,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"/>
+                </svg>
+                <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Find Sudoku&nbsp;&nbsp;&nbsp;</router-link>
+            </button>
+            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
                 preserveAspectRatio="xMidYMid meet">
@@ -50,9 +55,9 @@
                 -37 0 -64 -6 -84 -19z"/>
                 </g>
                 </svg>
-                <div>&nbsp;&nbsp;Upload</div>
-            </div>
-            <div class="sidebar-icon flex items-center px-4 py-2 text-black cursor-pointer bg-white hover:bg-grey-lighter">
+                <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;Upload Image&nbsp;</router-link>
+            </button>
+            <button class="sidebar-icon flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
                 preserveAspectRatio="xMidYMid meet">
@@ -78,8 +83,48 @@
                 -75 0 c-52 0 -77 -4 -80 -13z"/>
                 </g>
                 </svg>
-                <div>&nbsp;&nbsp;About</div>
-            </div>
+                <router-link :to="'/home'" class="text-black no-underline">&nbsp;&nbsp;About Creator</router-link>
+            </button>
         </div>
     </div>
+
+    <div id="user-panel" class = "ml-48 h-12 bg-white text-black fixed items-center w-right flex flex-row-reverse p-5">
+        <div id="user-dropdown" class = "relative flex-initial ml-6">
+            <button @click = "isOpen = !isOpen" class = "h-8 w-8">
+                    <svg version="1.0"
+                    width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
+                    preserveAspectRatio="xMidYMid meet">
+                    <metadata>
+                    Created by potrace 1.16, written by Peter Selinger 2001-2019
+                    </metadata>
+                    <g transform="translate(0.000000,24.000000) scale(0.009600,-0.009600)"
+                    fill="#000000" stroke="none">
+                    <path d="M0 2000 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    <path d="M0 1250 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    <path d="M0 500 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    </g>
+                    </svg>
+            </button>
+            <button v-if="isOpen" @click = "isOpen = false" tabindex = "-1" class = "fixed pin h-full w-full cursor-default"></button>
+            <div v-if="isOpen" class="absolute pin-r mt-2 bg-grey-lighter rounded-lg py-2 w-32 shadow-lg">
+                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
+                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
+            </div>
+        </div>
+
+        <div id="user-icon" class = "block h-8 w-8 rounded-full overflow-hidden border border-black">
+            <img src="../assets/icon_user.png" />
+        </div>
+
+    </div>
 </template>
+
+<script>
+export default{
+    data(){
+        return{
+            isOpen:false
+        }
+    }
+}
+</script>
