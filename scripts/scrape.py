@@ -3,6 +3,15 @@ from bs4 import BeautifulSoup
 import re
 import json
 
+def translateToArray(digits):
+    result = []
+    for digit in digits:
+        if(digit in "."):
+            result.append(0)
+        elif(digit in '0123456789'):
+            result.append(int(digit))
+    return result
+
 def scrapeNYTimes():
     URL = "https://www.nytimes.com/puzzles/sudoku/hard"
     page = requests.get(URL)
@@ -60,6 +69,31 @@ def scrapeSudokuOrgUK():
             result.append(0)
     return result
 
+def retrieveArto2006():
+    return [8, 5, 0, 0, 0, 2, 4, 0, 0, 7, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7, 0, 0, 2, 3, 0, 5, 0, 0, 0, 9, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 7, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 0, 4, 0]
 
+def retrieveArto2010():
+    return [0, 0, 5, 3, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 2, 0, 0, 7, 0, 0, 1, 0, 5, 0, 0, 4, 0, 0, 0, 0, 5, 3, 0, 0, 0, 1, 0, 0, 7, 0, 0, 0, 6, 0, 0, 3, 2, 0, 0, 0, 8, 0, 0, 6, 0, 5, 0, 0, 0, 0, 9, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 9, 7, 0, 0]
 
-print(scrape())
+def retrieveWPC2020():
+    return translateToArray('...5.7.....24.63...9..1..2.27.....68..3...1..14.....93.6..4..5...92.56.....9.3...')
+
+def retrieveWPC2020Advanced():
+    return translateToArray('...8.9.....5...7...29.1.64.7...6...2..62.43..8...7...6.37.2.81...1...5.....1.3...')
+
+def retrieveSlowestPeter():
+    return translateToArray('.....6....59.....82....8....45........3........6..3.54...325..6..................')
+
+def retrieveImpossiblePeter():
+    return translateToArray(
+    '''. . . |. . 5 |. 8 . 
+    . . . |6 . 1 |. 4 3 
+    . . . |. . . |. . . 
+    ------+------+------
+    . 1 . |5 . . |. . . 
+    . . . |1 . 6 |. . . 
+    3 . . |. . . |. . 5 
+    ------+------+------
+    5 3 . |. . . |. 6 1 
+    . . . |. . . |. . 4 
+    . . . |. . . |. . . ''')
