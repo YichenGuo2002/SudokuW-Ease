@@ -60,4 +60,6 @@ def scrapeSudokuOrgUK():
             result.append(0)
     return result
 
-print(scrapePrintable())
+
+
+print(scrape())
