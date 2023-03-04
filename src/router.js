@@ -11,20 +11,19 @@ export default createRouter({
       component: () => import('./views/Home.vue')
     },
     {
+      path: '/find',
+      name: 'Find',
+      component: () => import('./views/Find.vue')
+    },
+    {
+      path: '/upload',
+      name: 'Upload',
+      component: () => import('./views/Upload.vue')
+    },
+    {
       path: '/about',
-      name: 'about',
+      name: 'About',
       component: () => import('./views/About.vue')
     },
-    // route level code-splitting
-      // this generates a separate chunk (create.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-    /*
-    {
-      path: '/product',
-      name: 'product',
-      props: true,
-      component: () => import( './views/Product.vue')
-    },
-    */
   ]
 })
