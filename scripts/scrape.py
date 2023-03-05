@@ -12,18 +12,14 @@ def translateToArray(digits):
             result.append(int(digit))
     return result
 
-def scrapeNYTimes():
+def scrapeNYTimes(difficulty):
     URL = "https://www.nytimes.com/puzzles/sudoku/hard"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     scripts = soup.find('script', string=re.compile('window.gameData')).text
     data = scripts.split("=", 1)[1]
     ld = json.loads(data)
-    return{
-        'easy':ld['easy']['puzzle_data']['puzzle'],
-        'medium':ld['medium']['puzzle_data']['puzzle'],
-        'hard':ld['hard']['puzzle_data']['puzzle']
-    } 
+    return ld[difficulty]['puzzle_data']['puzzle']
 
 # https://menneske.no/
 def scrapeMenneskeNo():
@@ -97,3 +93,49 @@ def retrieveImpossiblePeter():
     5 3 . |. . . |. 6 1 
     . . . |. . . |. . 4 
     . . . |. . . |. . . ''')
+
+def scrape(index, difficulty = ""):
+    if(index == 1 and difficulty in ['easy', 'medium', 'hard']):
+        sudoku = scrapeNYTimes(difficulty)
+        size = 9
+    elif(index == 2):
+        sudoku = scrapeMenneskeNo()
+        size = 9
+    elif(index == 3):
+        sudoku = scrapeSudokuWebOrg()
+        size = 9
+    elif(index == 4):
+        sudoku = scrapeSudokuOrgUK()
+        size = 9
+    elif(index == 5):
+        sudoku = retrieveArto2006()
+        size = 9
+    elif(index == 6):
+        sudoku = retrieveArto2010()
+        size = 9 
+    elif(index == 7 and difficulty == "medium"):
+        sudoku = retrieveWPC2020()
+        size = 9 
+    elif(index == 7 and difficulty == "hard"):
+        sudoku = retrieveWPC2020Advanced()
+        size = 9 
+    elif(index == 8 and difficulty == "slowest"):
+        sudoku = retrieveSlowestPeter()
+        size = 9 
+    elif(index == 8 and difficulty == "impossible"):
+        sudoku = retrieveImpossiblePeter()
+        size = 9 
+
+    if(len(difficulty) > 0):
+        return{
+            "sudoku": sudoku,
+            "size": size,
+            "difficulty": difficulty
+        }
+    else:
+        return{
+            "sudoku": sudoku,
+            "size": size
+        }
+
+print(scrapeMenneskeNo())
