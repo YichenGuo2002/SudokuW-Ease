@@ -1,15 +1,3 @@
-(function() {
-  var childProcess = require("child_process");
-  var oldSpawn = childProcess.spawn;
-  function mySpawn() {
-      console.log('spawn called');
-      console.log(arguments);
-      var result = oldSpawn.apply(this, arguments);
-      return result;
-  }
-  childProcess.spawn = mySpawn;
-})();
-
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron'
@@ -27,11 +15,8 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 function startPythonServer() {
-  pythonServerProcess = spawn('yarn', ["start-python-bg"], {
-    stdio: 'inherit',
-    env: { 
-      PATH: 'C:\Users\guoyi\AppData\Local\Yarn\bin'
-    } 
+  pythonServerProcess = spawn('python3', ["./scripts/app.py"], {
+    stdio: ['ignore', 'pipe', 'pipe']
   });
 
   pythonServerProcess.on('error', (err) => {

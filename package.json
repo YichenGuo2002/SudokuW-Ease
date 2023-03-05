@@ -5,7 +5,7 @@
   "scripts": {
     "electron:build": "vue-cli-service electron:build",
     "start-python": "python3 scripts/app.py",
-    "start-python-bg":"python3 ../scripts/app.py",
+    "start-python-bg":"python3 ./scripts/app.py",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
