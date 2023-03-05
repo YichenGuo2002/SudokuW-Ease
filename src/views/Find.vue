@@ -1,7 +1,7 @@
 <template>
     <div class = "ml-48 mt-16 px-4 py-2 mb-4 bg-white text-black flex-1">
         <p>Pick some Sudoku puzzles! 
-        <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times</button>
+        <button  @click = "getScrape(1)" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times</button>
         <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Menneske.No 6913752 Random Sudokus</button>
         <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Sudokuweb.Org Generator</button>
         <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">UK Sudoku Daily Competition</button>
@@ -10,5 +10,27 @@
         <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">USA Sudoku Championship 2020</button>
         <button  class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Dr Peter's Unsolvable Sudoku</button>
         .</p>
+        <p>{{ show }}</p>
     </div>
 </template>
+
+<script>
+    const {solve, check, clear, scrape} = window.electron
+
+    export default{
+        data(){
+            return{
+                show: "Initial State"
+            }
+        },
+        methods:{
+            async getScrape(index){
+                return await scrape(index)
+                .then(result =>{
+                    console.log("I get the result", result.text)
+                    this.show = result.text
+                })
+            }
+        }
+    }
+</script>

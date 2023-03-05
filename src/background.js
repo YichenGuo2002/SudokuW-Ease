@@ -1,14 +1,49 @@
+(function() {
+  var childProcess = require("child_process");
+  var oldSpawn = childProcess.spawn;
+  function mySpawn() {
+      console.log('spawn called');
+      console.log(arguments);
+      var result = oldSpawn.apply(this, arguments);
+      return result;
+  }
+  childProcess.spawn = mySpawn;
+})();
+
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const path = require('path')
+const { spawn } = require('child_process');
+
+let pythonServerProcess;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
+
+function startPythonServer() {
+  pythonServerProcess = spawn('yarn', ["start-python-bg"], {
+    stdio: 'inherit',
+    env: { 
+      PATH: 'C:\Users\guoyi\AppData\Local\Yarn\bin'
+    } 
+  });
+
+  pythonServerProcess.on('error', (err) => {
+    console.error(err);
+  });
+}
+
+function stopPythonServer() {
+  if (pythonServerProcess) {
+    pythonServerProcess.kill();
+  }
+}
 
 async function createWindow() {
   // Create the browser window.
@@ -17,11 +52,12 @@ async function createWindow() {
     height: 750,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      enableRemoteModule: true,
+      preload: path.join(__dirname, "../src/preload.js") // add "preload"
     }
   })
   win.setOpacity(1)
@@ -65,7 +101,12 @@ app.on('ready', async () => {
     }
   }
   createWindow()
+  startPythonServer();
 })
+
+app.on('before-quit', () => {
+  stopPythonServer();
+});
 
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {

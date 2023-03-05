@@ -4,15 +4,21 @@
   "author": "Yichen Guo <yg2258@nyu.edu>",
   "scripts": {
     "electron:build": "vue-cli-service electron:build",
+    "start-python": "python3 scripts/app.py",
+    "start-python-bg":"python3 ../scripts/app.py",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "start": "electron ."
+    "start": "vue-cli-service electron:serve",
+    "stop-python": "pkill -f 'python3 scripts/app.py'"
   },
-  "main": "background.js",
+  "main": "./src/background.js",
   "dependencies": {
     "@vue/cli-service": "^5.0.8",
     "autoprefixer": "^10.4.13",
+    "concurrently": "^7.6.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "postcss": "^8.4.21",
     "vue": "^3.2.47",
     "vuex": "^4.0.2"

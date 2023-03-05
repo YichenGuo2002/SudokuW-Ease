@@ -4,10 +4,20 @@ from sudoku import solve
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route("/receiver", methods=["POST"])
-def postME():
+@app.route("/solve", methods=["POST"])
+def postSolve():
     data = request.get_json()
     result = solve(data['sudoku'], data['size'])
+    data = jsonify(result)
+    return data
+
+@app.route("/scrape", methods=["POST"])
+def postScrape():
+    data = request.get_json()
+    print(data)
+    result = {
+        'text': 'hello'
+    }
     data = jsonify(result)
     return data
 
