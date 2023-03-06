@@ -22,14 +22,14 @@ const solve = async (sudoku, size) =>{
 }
 
 // Find page requests
-const scrape = async (index) =>{
-    console.log("trying")
+const scrape = async (index, difficulty) =>{
     return await fetch(URL+"/scrape", {
     // Adding method type
     method: "POST",
     // Adding body or contents to send
     body: JSON.stringify({
-        index: index
+        index: index,
+        difficulty: difficulty
     }),
     // Adding headers to the request
     headers: {
@@ -41,7 +41,7 @@ const scrape = async (index) =>{
         return response.json()
     }).then((data) =>{
         console.log(data)
-        return data
+        return data.body
     })
 }
 

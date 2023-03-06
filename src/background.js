@@ -16,7 +16,7 @@ protocol.registerSchemesAsPrivileged([
 
 function startPythonServer() {
   pythonServerProcess = spawn('python3', ["./scripts/app.py"], {
-    stdio: ['ignore', 'pipe', 'pipe']
+    //stdio: ['ignore', 'pipe', 'pipe']
   });
 
   pythonServerProcess.on('error', (err) => {

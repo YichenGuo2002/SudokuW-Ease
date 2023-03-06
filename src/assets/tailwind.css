@@ -68,6 +68,39 @@
     outline: none;
   }
 
+  input:focus {
+    outline: none;
+  }
+
+  .cell-block{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border: 1px solid black;
+  }
+
+  .cell{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+  }
+
+  .cell-bl{
+    border-left: 4px solid #000000;
+  }
+
+  .cell-br{
+    border-right: 4px solid #000000;
+  }
+
+  .cell-bt{
+    border-top: 4px solid #000000;
+  }
+
+  .cell-bb{
+    border-bottom: 4px solid #000000;
+  }
+
  /**
   * Here you would add any custom utilities you need that don't come out of the
   * box with Tailwind.
