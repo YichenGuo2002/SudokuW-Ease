@@ -10,17 +10,24 @@
         <button  @click = "getScrape(7, 'medium')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">USA Sudoku Championship 2020</button>
         <button  @click = "getScrape(8, 'slowest')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Dr Peter's Unsolvable Sudoku</button>
         .</p>
-        <p>{{ show }}</p>
+        <Sudoku v-bind:puzzle="puzzle"/>
     </div>
 </template>
 
 <script>
-    const {solve, clear, scrape} = window.electron
+    const {scrape} = window.electron
+    import Sudoku from '../components/Sudoku.vue'
 
     export default{
+        components:{
+            Sudoku,
+        },
         data(){
             return{
-                show: "Initial State"
+                puzzle:{
+                    sudoku:Array(81),
+                    size:9
+                }
             }
         },
         methods:{
@@ -28,7 +35,8 @@
                 return await scrape(index, difficulty)
                 .then(result =>{
                     console.log("I get the result", result)
-                    this.show = result.sudoku
+                    this.puzzle.sudoku = result.sudoku
+                    this.puzzle.size = result.size
                 })
             }
         }
