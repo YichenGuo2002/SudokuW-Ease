@@ -22,14 +22,20 @@ Are you ...
 
 > - A casual Sudoku player who is struggling to solve a particularly challenging puzzle. You are looking for an app that can help you solve the puzzle quickly and easily, and are interested in finding the most advanced Sudoku solver algorithms.
 
-I created the Sudoku W/ Ease project out of a desire for an all-in-one solution for Sudoku lovers like myself. With this desktop app, you can access puzzles from all your favorite newspapers and websites, all in one place. Plus, the advanced solver algorithm can solve even the most challenging puzzles in seconds. Try the ***Sudoku W/ Ease*** app today!
+I created the project out of a desire for an all-in-one solution for Sudoku lovers like myself. With this desktop app, you can access puzzles from all your favorite newspapers and websites, all in one place. Plus, the advanced solver algorithm can solve even the most challenging puzzles in seconds. Try the ***Sudoku W/ Ease*** app today!
 
 ### App Usage
-On the website, you could enter your location, favorite category of tourist attraction, transportation method, and number of places to go. 
+ - Sudoku Solving
+ This CLI includes a user-friendly Sudoku board interface to display puzzles of various sizes, including 4×4, 9×9, 16×16, and 25×25. The "Solve" button below initiates backend API calls to Python Flask endpoints, providing fast and accurate solutions in milliseconds. Users can also dynamically modify the puzzle by inputting values into empty boxes and check their solutions for accuracy. 
 
-After hitting "Generate My Trip!" button, the app will automatically generate a random and unique trip established on your inputs. It is worth mentioning that these trips would automatically plan a shortest route covering all the attractions. When you click on "Take me to the next attraction," a Google Map navigation page would be opened, with the starting point, destination, and transportation already chosen for you.
+ - Online Puzzles
+ This CLI uses BeautifulSoup web scrapping tools to extract random/daily Sudokus from many online sources, each with varying difficulty levels. Some are easy, some are so hard that takes 40+ seconds for the most advanced solver algorithm to handle. Users can choose from a wide range of sources and click on a button to pull puzzles from that source, making it easy to find the perfect Sudoku challenge. 
 
-![Trip Generator Screenshot](https://user-images.githubusercontent.com/60641853/192043304-5f452414-2777-4972-90d5-96bf3b5d4ccb.png)
+ - Upload puzzles
+ This CLI enables user upload of custome Sudoku puzzles. It analyzes the Sudoku and offers instant solution.
+
+ - Optimal Algorithm
+ This CLI introduces a variety of published Sudoku algorithms, each with their own strengths and weaknesses. Here is a brief introduction about what constraint satisfaction and depth-first search are and how they are utilized in this program.
 
 <br>Isn't that cool? Just go out and have fun without worrying about the plans!
 
