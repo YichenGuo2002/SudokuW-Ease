@@ -69,17 +69,14 @@
     overflow:auto;
   }
 
-  button{
+  button, input, textarea{
     -webkit-app-region: no-drag;
   }
 
-  button:focus {
-    outline: none;
+  button:focus, input:focus, textarea:focus{
+    outline:none;
   }
 
-  input:focus {
-    outline: none;
-  }
 
   .cell-block{
     width: 50px;
