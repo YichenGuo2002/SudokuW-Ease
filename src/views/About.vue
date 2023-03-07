@@ -1,14 +1,14 @@
 <template>
     <div class = "ml-48 mt-16 px-4 py-2 mb-4 bg-white text-black flex-1">
         <table>
-            <tbody v-html =  "printTable(puzzle, 4)">
+            <tbody v-html =  "printTable(puzzle, 9)">
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
-import { isIntegerKey } from '@vue/shared';
+    import { isIntegerKey } from '@vue/shared';
 
     const printTable = (sudoku, size) =>{
         let result = "";
@@ -42,7 +42,8 @@ import { isIntegerKey } from '@vue/shared';
     export default{
         data(){
             return{
-                puzzle: [ 9, 8, 0, 6, 0, 7, 0, 4, 0, 4, 0, 0, 0, 0, 0, 6]
+                puzzle: [8, 5, 0, 0, 0, 2, 4, 0, 0, 7, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7, 0, 0, 2, 3, 0, 5, 0, 0, 0, 9, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 7, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 0, 4, 0]
+
             }
         },
         methods:{

@@ -149,14 +149,6 @@ def display(values, size):
             print(line)
     print()
 
-def solve(grid, size): 
-    setup(size)
-    result = {}
-    start_time = time.time()
-    result['solution'] = search(parse_grid(grid, size))
-    result['time'] = time.time() - start_time
-    return result
-
 def search(values):
     # "Using depth-first search and propagation, try all possible values."
     if values is False:
@@ -173,6 +165,18 @@ def some(seq):
     for e in seq:
         if e: return e
     return False
+
+def solve(grid, size): 
+    setup(size)
+    result = {}
+    start_time = time.time()
+    resultDict = search(parse_grid(grid, size))
+    result['time'] = time.time() - start_time
+    solution = []
+    for key, value in resultDict.items():
+        solution.append(int(value))
+    result['solution'] = solution
+    return result
 
 if __name__ == '__main__':
     example_board = """800000000/003600000/070090200/050007000/000045700/000100030/001000068/008500010/090000400"""
