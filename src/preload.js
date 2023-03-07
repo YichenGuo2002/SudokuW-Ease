@@ -1,5 +1,6 @@
 const URL = "http://127.0.0.1:5000";
 const electron = require('electron')
+const { ipcRenderer } = require('electron');
 
 // Solve page (Sudoku component) requests
 const solve = async (sudoku, size) =>{
@@ -49,15 +50,17 @@ const scrape = async (index, difficulty) =>{
     })
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("btn-close").addEventListener('click', () => {
+        ipcRenderer.invoke('quit-app');
+    });
 
-const clear = () =>{
-
-}
-
-
+    document.getElementById("btn-minimize").addEventListener('click', () => {
+        ipcRenderer.invoke('min-app');
+    });
+});
 
 electron.contextBridge.exposeInMainWorld('electron', {
     solve,
-    clear,
     scrape
   });

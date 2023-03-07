@@ -1,7 +1,9 @@
 <template>
     <div class = "ml-48 mt-16 px-4 py-2 mb-4 bg-white text-black flex-1">
         <p>Pick some Sudoku puzzles! 
-        <button  @click = "getScrape(1, 'easy')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times</button>
+        <button  @click = "getScrape(1, 'easy')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times Daily Easy</button>
+        <button  @click = "getScrape(1, 'medium')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times Daily Medium</button>
+        <button  @click = "getScrape(1, 'hard')" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">New York Times Daily Hard</button>
         <button  @click = "getScrape(2)" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Menneske.No 6913752 Random Sudokus</button>
         <button  @click = "getScrape(3)" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Sudokuweb.Org Generator</button>
         <button  @click = "getScrape(4)" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">UK Sudoku Daily Competition</button>

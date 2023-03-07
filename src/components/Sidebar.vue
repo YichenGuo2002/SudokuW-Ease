@@ -1,4 +1,61 @@
 <template>
+    <div id="user-panel" class = "pl-48 h-16 bg-white text-black fixed items-center w-full flex flex-row-reverse p-2 border-b border-black">
+        <button class = "h-8 w-8" id = "btn-close">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="24px" height="24px" viewBox="0 0 24px 24px"
+            preserveAspectRatio="xMidYMid meet">
+            <metadata>
+            Created by potrace 1.16, written by Peter Selinger 2001-2019
+            </metadata>
+            <g transform="translate(0.000000,24.000000) scale(0.009600,-0.009600)"
+            fill="#000000" stroke="none">
+            <path d="M345 2150 l-39 -40 429 -430 430 -430 -430 -430 -430 -430 43 -42 42
+            -43 430 430 430 430 430 -430 430 -430 42 43 43 42 -430 430 -430 430 430 430
+            430 430 -43 42 -42 43 -430 -430 -430 -430 -428 428 c-235 235 -430 427 -433
+            427 -2 0 -23 -18 -44 -40z"/>
+            </g>
+            </svg>
+        </button>
+        <button class = "h-8 w-8 ml-2" id = "btn-minimize">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="24px" height="24px" viewBox="0 0 24px 24px" preserveAspectRatio="xMidYMid meet">
+            <metadata>
+            Created by potrace 1.16, written by Peter Selinger 2001-2019
+            </metadata>
+            <g transform="translate(0.000000,24.000000) scale(0.024000,-0.024000)" fill="#000000" stroke="none">
+            <path d="M762 797 l-162 -162 0 93 c0 85 -1 92 -20 92 -19 0 -20 -7 -20 -130 l0 -130 130 0 c123 0 130 1 130 20 0 19 -7 20 -92 20 l-93 0 163 163 c155 156 162 164 145 180 -18 15 -27 8 -181 -146z"/>
+            <path d="M180 420 c0 -19 7 -20 92 -20 l93 0 -163 -163 c-154 -154 -161 -163 -145 -180 17 -16 26 -9 180 145 l163 163 0 -93 c0 -85 1 -92 20 -92 19 0 20 7 20 130 l0 130 -130 0 c-123 0 -130 -1 -130 -20z"/>
+            </g>
+            </svg>
+        </button>
+        <div id="user-dropdown" class = "relative flex-initial ml-4">
+            <button @click = "isOpen = !isOpen" class = "h-8 w-8">
+                    <svg version="1.0"
+                    width="24px" height="24px" viewBox="0 0 24px 24px"
+                    preserveAspectRatio="xMidYMid meet">
+                    <metadata>
+                    Created by potrace 1.16, written by Peter Selinger 2001-2019
+                    </metadata>
+                    <g transform="translate(0.000000,24.000000) scale(0.009600,-0.009600)"
+                    fill="#000000" stroke="none">
+                    <path d="M0 2000 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    <path d="M0 1250 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    <path d="M0 500 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
+                    </g>
+                    </svg>
+            </button>
+            <button v-if="isOpen" @click = "isOpen = false" tabindex = "-1" class = "fixed pin h-full w-full cursor-default"></button>
+            <div v-if="isOpen" class="absolute pin-r mt-2 bg-grey-lighter rounded-lg py-2 w-32 shadow-lg">
+                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
+                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
+            </div>
+        </div>
+
+        <div id="user-icon" class = "block h-8 w-8 rounded-full overflow-hidden border border-black">
+            <img src="../assets/icon_user.png" />
+        </div>
+
+    </div>
+
     <nav id="nav" class="w-48 bg-white text-black fixed min-h-screen pt-2 pb-2 flex flex-col justify-between border-r border-black">
         <div class = "sidebar-icons flex flex-col items-center">
             <div class = "h-12">
@@ -25,17 +82,41 @@
                 <router-link :to="'/'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
             </button>
             <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                version="1.1" id="Layer_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 250 250" 
-                enable-background="new 0 0 250 250" xml:space="preserve">  
-                <image id="image0" width="250" height="250" x="0" y="0" 
-                href="data:image/png;base64,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"/>
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                width="24px" height="24px" viewBox="0 0 24px 24px"
+                preserveAspectRatio="xMidYMid meet">
+                <metadata>
+                Created by potrace 1.16, written by Peter Selinger 2001-2019
+                </metadata>
+                <g transform="translate(0.000000,24.000000) scale(0.009600,-0.009600)"
+                fill="#000000" stroke="none">
+                <path d="M212 2288 c-17 -17 -17 -2059 0 -2076 17 -17 2059 -17 2076 0 17 17
+                17 2059 0 2076 -17 17 -2059 17 -2076 0z m1988 -1038 l0 -950 -950 0 -950 0 0
+                950 0 950 950 0 950 0 0 -950z"/>
+                <path d="M535 2031 c-50 -22 -109 -86 -125 -136 -8 -23 -11 -68 -8 -114 9
+                -141 80 -234 286 -373 l112 -76 113 76 c205 139 276 232 285 373 5 93 -8 138
+                -57 192 -48 54 -101 77 -179 77 -62 0 -107 -15 -144 -48 -16 -14 -20 -14 -35
+                0 -58 51 -172 64 -248 29z m190 -122 c19 -17 43 -44 52 -60 10 -16 20 -29 23
+                -29 3 0 18 20 34 44 38 56 72 76 131 76 42 0 52 -5 86 -39 35 -35 39 -44 39
+                -90 0 -28 -6 -67 -14 -86 -21 -50 -98 -128 -193 -197 l-83 -59 -83 59 c-95 69
+                -172 147 -193 197 -8 19 -14 58 -14 86 0 46 4 55 39 90 35 35 44 39 89 39 43
+                0 57 -5 87 -31z"/>
+                <path d="M1300 2000 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M1300 1700 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M1300 1400 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M400 1100 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M1300 1100 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M400 800 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M1300 800 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M400 500 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                <path d="M1300 500 l0 -50 400 0 400 0 0 50 0 50 -400 0 -400 0 0 -50z"/>
+                </g>
                 </svg>
                 <router-link :to="'/find'" class="text-black no-underline">&nbsp;&nbsp;Find Sudoku&nbsp;&nbsp;&nbsp;</router-link>
             </button>
             <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
+                width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
                 <metadata>
                 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -62,7 +143,7 @@
             </button>
             <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
+                width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
                 <metadata>
                 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -95,44 +176,15 @@
             <h6>©2023 Yichen Guo LLC</h6>
         </div>
     </nav>
-
-    <div id="user-panel" class = "ml-48 h-16 bg-white text-black fixed items-center w-right flex flex-row-reverse p-2 border-b border-black">
-        <div id="user-dropdown" class = "relative flex-initial ml-6">
-            <button @click = "isOpen = !isOpen" class = "h-8 w-8">
-                    <svg version="1.0"
-                    width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
-                    preserveAspectRatio="xMidYMid meet">
-                    <metadata>
-                    Created by potrace 1.16, written by Peter Selinger 2001-2019
-                    </metadata>
-                    <g transform="translate(0.000000,24.000000) scale(0.009600,-0.009600)"
-                    fill="#000000" stroke="none">
-                    <path d="M0 2000 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
-                    <path d="M0 1250 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
-                    <path d="M0 500 l0 -50 1250 0 1250 0 0 50 0 50 -1250 0 -1250 0 0 -50z"/>
-                    </g>
-                    </svg>
-            </button>
-            <button v-if="isOpen" @click = "isOpen = false" tabindex = "-1" class = "fixed pin h-full w-full cursor-default"></button>
-            <div v-if="isOpen" class="absolute pin-r mt-2 bg-grey-lighter rounded-lg py-2 w-32 shadow-lg">
-                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
-                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
-            </div>
-        </div>
-
-        <div id="user-icon" class = "block h-8 w-8 rounded-full overflow-hidden border border-black">
-            <img src="../assets/icon_user.png" />
-        </div>
-
-    </div>
 </template>
 
 <script>
+
 export default{
     data(){
         return{
             isOpen:false
         }
-    }
+    },
 }
 </script>
