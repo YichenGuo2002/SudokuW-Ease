@@ -2,6 +2,8 @@
 
 ### Master Sudoku effortlessly with Sudoku W/ Ease CLI - the simplest way to solve Sudoku puzzles on your desktop!
 
+ --Developed by Yichen Guo, yg2258@nyu.edu--
+
 Sudoku made effortless! Solve any puzzle, scrape online games, and create custom grids with Sudoku W/ Ease CLI. Our advanced solver and scraper algorithms, including BeautifulSoup, constraint satisfaction, and depth-first search, make every puzzle a breeze. Built with Electron, VueJS, SQLite, Flask, and Tailwind CSS for a seamless desktop experience.
 
 ## Table of Contents
@@ -35,26 +37,29 @@ I created the project out of a desire for an all-in-one solution for Sudoku love
 <img width="75%" alt="Sudoku_w_ease_find_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/find_demo.png?raw=true">
 
  - Upload puzzles
- 
+
  This CLI enables user upload of custome Sudoku puzzles. It analyzes the Sudoku and offers instant solution.
 
 <img width="75%" alt="Sudoku_w_ease_upload_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/upload_demo.png?raw=true">
 
  - Optimal Algorithm
+
  This CLI introduces a variety of published Sudoku algorithms, each with their own strengths and weaknesses. Here is a brief introduction about what constraint satisfaction and depth-first search are and how they are utilized in this program.
 
-<br>Isn't that cool? Just go out and have fun without worrying about the plans!
+Isn't that cool? Just go out and have fun without worrying about the plans!
 
 
 ### Technology
 - JavaScript
-- Node.js (16.15.0)
-- ReactJS
-- Azure Serverless Functions
-- Azure Cosmos DB
-- Azure Blob Storage
+- Python
+- Electron
+- VueJS
+- SQLite
+- Flask
+- BeautifulSoup
+- Fetch API
+- Tailwind CSS
 - HTML & CSS
-- Bootstrap 4
 
 ### Product Modules
 
@@ -76,7 +81,6 @@ I created the project out of a desire for an all-in-one solution for Sudoku love
 - Pictures & Introductions for each output attraction
 - Update Google Places API algorithm to expand attraction dataset
 - Connect input textfield with Google Map to improve location accuracy
-
 
 ### Acknowledgement
 Thanks to Bit Project's Serverless Camp and Mentorship Program, I was able to successfully build the first version of this product. Especially, I would like to thank my mentor @Anthony Chu for offering me so much guidance and experience. 
