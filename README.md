@@ -2,7 +2,7 @@
 
 ### Master Sudoku effortlessly with Sudoku W/ Ease CLI - the simplest way to solve Sudoku puzzles on your desktop!
 
- --Developed by Yichen Guo, yg2258@nyu.edu--
+Developed by [Yichen Guo](www.yichenguo.com).
 
 Sudoku made effortless! Solve any puzzle, scrape online games, and create custom grids with Sudoku W/ Ease CLI. Our advanced solver and scraper algorithms, including BeautifulSoup, constraint satisfaction, and depth-first search, make every puzzle a breeze. Built with Electron, VueJS, SQLite, Flask, and Tailwind CSS for a seamless desktop experience.
 
