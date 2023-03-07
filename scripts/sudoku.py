@@ -74,8 +74,8 @@ def test(size):
 def grid_values(grid1, size):
     grid1_chars = []
     for c in grid1:
-        if c in digits or c in '0.*':
-            grid1_chars.append(c)
+        if str(c) in digits or str(c) in '0.*':
+            grid1_chars.append(str(c))
     assert len(grid1_chars) == size * size
     grid1_values = {}
     for k, v in zip(squares, grid1_chars):
@@ -179,6 +179,6 @@ def solve(grid, size):
     return result
 
 if __name__ == '__main__':
-    example_board = """800000000/003600000/070090200/050007000/000045700/000100030/001000068/008500010/090000400"""
+    example_board = [8, 5, 0, 0, 0, 2, 4, 0, 0, 7, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7, 0, 0, 2, 3, 0, 5, 0, 0, 0, 9, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 7, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 0, 4, 0]
     print(solve(example_board,9)['solution'])
     print(solve(example_board,9)['time'])

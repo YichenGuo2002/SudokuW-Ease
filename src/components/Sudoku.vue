@@ -4,18 +4,18 @@
           <tbody v-html =  "puzzleTable"></tbody>
     </table>
     <div class = "flex-1" id="button-panel">
-      <button class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Solve</button>
-      <button class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Check</button>
+      <button @click = "localSolve" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Solve</button>
+      <button @click = "localCheck" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Check</button>
       <button @click = "localClear" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Clear</button>
     </div>
     <div class = "flex-1 m-2" id = "message-panel">
-      <p>Not able to fetch.</p>
+      <p>{{message}}</p>
     </div>
   </div>
 </template>
 
 <script>
-  const {solve, check, clear, scrape} = window.electron
+  const {solve, scrape} = window.electron
 
   const printTable = (sudoku, size) =>{
         let result = "";
@@ -32,9 +32,9 @@
             if(i % size == 0) result +='cell-br '
             result += ' ">'
             if(Number.isInteger(sudoku[i-1]) && Number(sudoku[i-1]) != 0){
-                result += Number(sudoku[i-1]).toString()
+                result += '<div class = "cell flex items-center justify-center"> ' + Number(sudoku[i-1]).toString() + ' </div>'
             }else{
-                result += `<input oninput = "this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class = "cell" type="text" size="1" autocomplete="off" maxlength="1" name="${i}" value="" />`
+                result += `<input oninput = "this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class = "cell cell-input" type="text" size="1" autocomplete="off" maxlength="1" name="${i}" value="" />`
             }
 
             result += '</td>'
@@ -46,12 +46,71 @@
         return result
     }
 
-  const localSolve = () =>{
-
+  function collect(){
+    let values = [];
+    const cells = document.getElementsByClassName('cell');
+    for (let i = 0; i < cells.length; i++) {
+      if(cells[i].tagName == "DIV"){
+        values.push(Number(cells[i].textContent.trim()));
+      }else if(cells[i].tagName == "INPUT"){
+        if(cells[i].value.trim()){
+          values.push(Number(cells[i].value.trim()))
+        }
+        else{
+          values.push(0)
+        }
+      }
+    }
+    return values
   }
 
-  const localCheck = () =>{
+  const check = () =>{
+    let sudoku = collect()
+    const size = Math.sqrt(sudoku.length);
 
+    // Check each row
+    for (let i = 0; i < size; i++) {
+      const row = new Set();
+      for (let j = 0; j < size; j++) {
+        const num = sudoku[i * size + j];
+        if (num < 1 || num > size || row.has(num)) {
+          return false;
+        }
+        row.add(num);
+      }
+    }
+
+    // Check each column
+    for (let j = 0; j < size; j++) {
+      const col = new Set();
+      for (let i = 0; i < size; i++) {
+        const num = sudoku[i * size + j];
+        if (num < 1 || num > size || col.has(num)) {
+          return false;
+        }
+        col.add(num);
+      }
+    }
+
+    // Check each box
+    const boxSize = Math.sqrt(size);
+    for (let r = 0; r < size; r += boxSize) {
+      for (let c = 0; c < size; c += boxSize) {
+        const box = new Set();
+        for (let i = r; i < r + boxSize; i++) {
+          for (let j = c; j < c + boxSize; j++) {
+            const num = sudoku[i * size + j];
+            if (num < 1 || num > size || box.has(num)) {
+              return false;
+            }
+            box.add(num);
+          }
+        }
+      }
+    }
+
+    // All checks passed, Sudoku is valid
+    return true;
   }
 
   export default {
@@ -62,6 +121,7 @@
     data(){
       return{
         localPuzzle: this.puzzle,
+        message:''
       }
     }, 
     computed: {
@@ -71,11 +131,28 @@
       },
     },
     methods:{
-        localClear(){
-          this.localPuzzle.sudoku = new Array(this.localPuzzle.size ** 2).fill(0);
-          const inputs = document.getElementsByClassName('cell');
-          for (let i = 0; i < inputs.length; i++) {
-            inputs[i].value = '';
+      collect,
+      localClear(){
+        this.localPuzzle.sudoku = new Array(this.localPuzzle.size ** 2).fill(0);
+        const inputs = document.getElementsByClassName('cell-input');
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].value = '';
+        }
+        this.message = ""
+      },
+      async localSolve(){
+        return await solve(collect(), this.localPuzzle.size)
+                .then(result =>{
+                    console.log("I get the result", result)
+                    this.localPuzzle.sudoku = result.solution
+                    this.message = `Solved in ${(result.time * 1000).toFixed(5)} ms.`
+                })
+      },
+      localCheck(){
+        if(check()){
+          this.message = "Check passed."
+        }else{
+          this.message = "Check failed."
         }
       }
     }

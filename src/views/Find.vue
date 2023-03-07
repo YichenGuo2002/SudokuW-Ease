@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    const {solve, check, clear, scrape} = window.electron
+    const {solve, clear, scrape} = window.electron
 
     export default{
         data(){
