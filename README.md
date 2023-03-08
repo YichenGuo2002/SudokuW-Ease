@@ -10,7 +10,7 @@ Sudoku made effortless! Solve any puzzle, scrape online games, and create custom
 - [Product Background](#project-background)
 - [App Usage](#app-usage)
 - [Technology](#technology)
-- [Product Modules](#product-modules)
+- [Product Architecture](#product-architecture)
 - [Incoming Features](#incoming-features)
 - [Acknowledgement](#acknowledgement)
 
@@ -61,29 +61,16 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 - Tailwind CSS
 - HTML & CSS
 
-### Product Modules
+### Product Architecture
 
 - Project Structures
-<img width="75%" alt="Project Structure" src="https://user-images.githubusercontent.com/60641853/192036975-25612012-1948-400f-9cfa-87672155e0ff.png">
-
-- [Google Places API](/api/googleplaces)
-<br>The Google Places API is built on the basis of Google Map's FindPlace and NearbySearch APIs. It serves the app by generating random tourist attractions based upon user inputs and output to the JS functions.
-<img width="75%" alt="Google_Places API" src="https://user-images.githubusercontent.com/60641853/192037555-4697a83c-f6ec-4ba9-8922-c243b24c373a.png">
-
-
-- [Route Calculations API](/api/route_calculation)
-<br>The Route Calculations API is established upon a solution for the famous Travelling Salesman Problem. It serves the app by creating graph of multiple destinations and calculating the shortest route to travel through all of them, which is the final trip plan shown to the users.
-<img width="75%" alt="Route_Calculation API" src="https://user-images.githubusercontent.com/60641853/192040987-344f312f-6acc-4dd6-bc31-c9da02951bb9.png">
-
+<img width="75%" alt="Project Structure" src="">
 
 ### Incoming Features
-- User Login functions for users to save their favorite trip or attraction
-- Pictures & Introductions for each output attraction
-- Update Google Places API algorithm to expand attraction dataset
-- Connect input textfield with Google Map to improve location accuracy
+- In Progress: Connect Python Flask server to SQLite to save users' favorite puzzles.
+- In Progress: Use Selenium to scrape Javascript-loaded content from sites like LA Times.
 
 ### Acknowledgement
-Thanks to Bit Project's Serverless Camp and Mentorship Program, I was able to successfully build the first version of this product. Especially, I would like to thank my mentor @Anthony Chu for offering me so much guidance and experience. 
 
-For the Google Places API, I would like to thank Google for providing open-source Map API. For the Route Calculations API, I would love to thank Steven & Felix Halim, William Fiset, and Micah Stairs for their [Java solution](https://github.com/williamfiset/Algorithms/blob/master/src/main/java/com/williamfiset/algorithms/graphtheory/TspDynamicProgrammingRecursive.java#L2) of Travelling Salesman Problem.
+Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&index=4&ab_channel=TheAssembly) and [Peter Novig](http://norvig.com/sudoku.html)'s Sudoku Algorithms, and [澁谷直樹](https://kikaben.com/)'s tech blog. I was able to learn a lot about traditional Sudoku algorithms.
 
