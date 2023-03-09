@@ -64,7 +64,7 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 ### Product Architecture
 
 - Project Structures
-<img width="75%" alt="Project Structure" src="">
+<img width="75%" alt="Project Structure" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=truehttps://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=true">
 
 ### Incoming Features
 - In Progress: Connect Python Flask server to SQLite to save users' favorite puzzles.
