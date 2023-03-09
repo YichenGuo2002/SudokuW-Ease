@@ -64,7 +64,14 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 ### Product Architecture
 
 - Project Structures
+
+The front-end of this project is built using the Electron-vue framework. The main process is initiated by the background.js file, which loads the preload.js file containing Fetch APIs for exchanging JSON-formatted data with the back-end. These API functions are exposed to Vue components through IPC.
+
+The back-end of this project is built on the Python framework, with a Flask server connected to the BeautifulSoup web scraping algorithm and the AI Sudoku solver algorithm. When requests are received, the Flask server sends the result back to the front-end. We are also working on connecting the back-end Flask to SQLite to allow users to save their favorite Sudoku puzzles.
+
 <img width="100%" alt="Project Structure" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=truehttps://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=true">
+
+Overall, this project utilizes a client-server architecture with a multi-tier structure. Each tier has separated functionalities, helping to increase the scalability and flexibility of the project.
 
 ### Incoming Features
 - In Progress: Connect Python Flask server to SQLite to save users' favorite puzzles.
