@@ -84,7 +84,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - [ ] Connect to PostgreSQL; 
 - [ ] Set up CI/CD pipeline;
 
-- (06/07/23): Made plans for the project and decided tech stack to use.
+- (06/07/23): Made plans for the project and decided tech stack to use.:notebook_with_decorative_cover:
 
 ### Acknowledgement
 
