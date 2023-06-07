@@ -78,7 +78,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - In Progress: Use Selenium to scrape Javascript-loaded content from sites like LA Times.
 
 #### Development Progress:
-2023 Summer: Improve current features, Connect to SQLite, Create user system
+【2023 Summer】: Improve current features, Connect to SQLite, Create user system
  - (06/07/23): Updated README plan
 
 ### Acknowledgement
