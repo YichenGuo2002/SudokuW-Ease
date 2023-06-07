@@ -78,7 +78,12 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - In Progress: Use Selenium to scrape Javascript-loaded content from sites like LA Times.
 
 #### Development Progress:
-【2023 Summer】: Finish current features; Refactor RESTful APIs to GraphQL APIs; Connect to PostgreSQL; Set up CI/CD pipeline;
+**2023 Summer**: 
+ - [] Finish current features; 
+ - [] Refactor RESTful APIs to GraphQL APIs; 
+ - [] Connect to PostgreSQL; 
+ - [] Set up CI/CD pipeline;
+ 
  - (06/07/23): Made plans for the project and decided tech stack to use.
 
 ### Acknowledgement
