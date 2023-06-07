@@ -77,7 +77,15 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - In Progress: Connect Python Flask server to SQLite to save users' favorite puzzles.
 - In Progress: Use Selenium to scrape Javascript-loaded content from sites like LA Times.
 
+#### Development Progress:
+2023 Summer: Improve current features, Connect to SQLite, Create user system
+ - (06/07/23): Updated README plan
+
 ### Acknowledgement
 
 Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&index=4&ab_channel=TheAssembly) and [Peter Novig](http://norvig.com/sudoku.html)'s Sudoku Algorithms, and [澁谷直樹](https://kikaben.com/)'s tech blog. I was able to learn a lot about traditional Sudoku algorithms.
 
+### Github Cheatsheet:
+```
+git pull // sync local repo
+```
