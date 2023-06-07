@@ -78,14 +78,14 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - In Progress: Use Selenium to scrape Javascript-loaded content from sites like LA Times.
 
 #### Development Progress:
-【2023 Summer】: Improve current features, Connect to SQLite, Create user system
- - (06/07/23): Updated README plan
+【2023 Summer】: Finish current features; Refactor RESTful APIs to GraphQL APIs; Connect to PostgreSQL; Set up CI/CD pipeline;
+ - (06/07/23): Made plans for the project and decided tech stack to use.
 
 ### Acknowledgement
 
 Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&index=4&ab_channel=TheAssembly) and [Peter Novig](http://norvig.com/sudoku.html)'s Sudoku Algorithms, and [澁谷直樹](https://kikaben.com/)'s tech blog. I was able to learn a lot about traditional Sudoku algorithms.
 
-### Github Cheatsheet:
+### Git Cheatsheet:
 ```
-git pull // sync local repo
+git pull //sync local repo
 ```
