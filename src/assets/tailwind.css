@@ -69,7 +69,7 @@
     overflow:auto;
   }
 
-  button, input, textarea{
+  button, input, textarea, a{
     -webkit-app-region: no-drag;
   }
 
@@ -105,6 +105,13 @@
 
   .cell-bb{
     border-bottom: 4px solid #000000;
+  }
+
+  @layer base {
+    @font-face {
+      font-family: Roboto;
+      src: url("../assets/Roboto-Regular.ttf") format('truetype');
+    }
   }
 
  /**
