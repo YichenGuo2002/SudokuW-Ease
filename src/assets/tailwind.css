@@ -45,6 +45,13 @@
   * @import "tailwindcss/utilities";
   */
  @tailwind utilities;
+
+ @layer base {
+  @font-face {
+    font-family: Roboto;
+    src: url("../assets/Roboto-Regular.ttf") format('truetype');
+  }
+  }
  
  ::-webkit-scrollbar {
     background-color:white;
@@ -67,6 +74,7 @@
   body{
     -webkit-app-region: drag;
     overflow:auto;
+    font-family: 'Roboto', sans-serif;
   }
 
   button, input, textarea, a{
@@ -107,12 +115,6 @@
     border-bottom: 4px solid #000000;
   }
 
-  @layer base {
-    @font-face {
-      font-family: Roboto;
-      src: url("../assets/Roboto-Regular.ttf") format('truetype');
-    }
-  }
 
  /**
   * Here you would add any custom utilities you need that don't come out of the

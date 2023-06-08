@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="font-primary flex min-h-screen block text-red-dark">
+    <div id="app" class="flex min-h-screen block text-red-dark">
         <sidebar></sidebar>
     <router-view/>
     </div>

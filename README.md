@@ -85,7 +85,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - [ ] Set up CI/CD pipeline;
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
-- (06/08/23): Restructured and revisited existing code. Tried changing the font to Roboto but failed. :facepalm:
+- (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
 
 ### Acknowledgement
 
@@ -93,5 +93,7 @@ Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&i
 
 ### Git Cheatsheet:
 ```
+https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md //emojicode cheatsheet
+
 git pull //sync local repo
 ```
