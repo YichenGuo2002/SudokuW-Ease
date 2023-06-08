@@ -85,7 +85,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - [ ] Set up CI/CD pipeline;
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
-- (06/08/23): Restructured and revisited existing code. Tried changing the font to Roboto but failed. :person_facepalming:
+- (06/08/23): Restructured and revisited existing code. Tried changing the font to Roboto but failed. :facepalm:
 
 ### Acknowledgement
 
