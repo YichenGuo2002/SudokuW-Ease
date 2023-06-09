@@ -86,6 +86,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
 - (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
+- (06/09/23):
 
 ### Acknowledgement
 
