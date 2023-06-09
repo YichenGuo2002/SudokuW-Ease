@@ -1,6 +1,6 @@
 <template>
     
-    <div id="user-panel" class = "pl-48 h-16 bg-white text-black fixed items-center w-full flex flex-row-reverse p-2 border-b border-black">
+    <div id="user-panel" class = "z-50 pl-48 h-16 text-black fixed items-center w-full flex flex-row-reverse p-2 bg-grey-lightest">
         
         <button class = "h-8 w-8" id = "btn-close">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@
 
     </div>
 
-    <nav id="nav" class="w-48 bg-white text-black fixed min-h-screen pt-2 pb-2 flex flex-col justify-between border-r border-black">
+    <nav id="nav" class="z-50 w-48 text-black fixed min-h-screen pt-2 pb-2 flex flex-col justify-between bg-grey-lightest">
         
         <div class = "sidebar-icons flex flex-col items-center">
             
@@ -67,7 +67,7 @@
                 <img src ="../assets/sudoku_logo.png" class = "h-12"/>
             </div>
 
-            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mt-4 mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mt-4 mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -87,7 +87,7 @@
                 </svg>
                 <router-link :to="'/'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -120,7 +120,7 @@
                 </svg>
                 <router-link :to="'/find'" class="text-black no-underline">&nbsp;&nbsp;Find Sudoku&nbsp;&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -147,7 +147,7 @@
                 </svg>
                 <router-link :to="'/upload'" class="text-black no-underline">&nbsp;&nbsp;Upload Puzzle&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-around items-center px-4 py-2 text-black cursor-pointer bg-white mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -183,7 +183,7 @@
             <p class = "pt-1">About/Press/Copyright</p>
             <p class = "pt-1">Contact Us/Creators</p>
             <h6 class = "pt-1">
-                <a href = "" class = "text-grey no-underline">©2023 Yichen Guo LLC</a>
+                <a href = "" class = "text-black no-underline">©2023 Yichen Guo LLC</a>
             </h6>
         
         </div>

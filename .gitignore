@@ -1,3 +1,4 @@
 node_modules
 #Electron-builder output
 /dist_electron
+_pycache_/

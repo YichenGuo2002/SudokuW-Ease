@@ -54,8 +54,8 @@
   }
  
  ::-webkit-scrollbar {
-    background-color:white;
-    border-left: 1px solid white;
+    background-color:#f8fafc;
+    border-left: 1px solid #f8fafc;
     width: 16px;
   }
   
@@ -115,6 +115,9 @@
     border-bottom: 4px solid #000000;
   }
 
+  .sidebar-icon{
+    background-color:#f8fafc;
+  }
 
  /**
   * Here you would add any custom utilities you need that don't come out of the
