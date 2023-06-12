@@ -93,11 +93,17 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. Set up styling for About page. :pleading_face:
 
 *Summer Week 5/10 Plan: Set up user System. Connect Application to PostgreSQL. Part I.*
+
 *Summer Week 6/10 Plan: Set up user System. Connect Application to PostgreSQL. Part II.*
+
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
+
 *Summer Week 8/10 Plan: Improve performance: Reduce latency.*
+
 *Summer Week 9/10 Plan: (tbd) Secure application delivery using AWS AppStream 2.0. Part I*
+
 *Summer Week 10/10 Plan: (tbd) Secure application delivery using AWS AppStream 2.0. Prepare for final showcase. Part II*
+
 *Summer after 10-Week Plan: App announced in my personal portfolio and showcased via Youtube.*
 
 ### Acknowledgement
