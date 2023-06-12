@@ -6,10 +6,10 @@
             </p>
             <textarea class="border border-black rounded-lg w-full h-64 p-2 m-2 text-black leading-normal focus:outline-none focus:shadow-outline" id="userPuzzle" type="text"  />
         </div>
-        <button @click = "getUpload" class="mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey" type="button">
+        <button @click = "getUpload" class="select-but" type="button">
         Submit
         </button>
-        <button @click = "clearUpload" class="mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey" type="button">
+        <button @click = "clearUpload" class="select-but" type="button">
         Clear
         </button>
         <Sudoku v-bind:puzzle="puzzle"/>

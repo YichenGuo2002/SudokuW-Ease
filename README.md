@@ -83,10 +83,12 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - [ ] Refactor RESTful APIs to GraphQL APIs; 
 - [ ] Connect to PostgreSQL; 
 - [ ] Set up CI/CD pipeline;
+- [ ] Improve performance: Vue takes a lot of load time.
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
 - (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
-- (06/09/23):
+- (06/09/23): Changed background color. Removed border line to improve aesthetics.
+- (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. :pleading_face:
 
 ### Acknowledgement
 

@@ -67,7 +67,7 @@
                 <img src ="../assets/sudoku_logo.png" class = "h-12"/>
             </div>
 
-            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mt-4 mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mt-4 mb-4 rounded-lg w-close hover:bg-grey-light">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -87,7 +87,7 @@
                 </svg>
                 <router-link :to="'/'" class="text-black no-underline">&nbsp;&nbsp;Solve Sudoku&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-light">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -120,7 +120,7 @@
                 </svg>
                 <router-link :to="'/find'" class="text-black no-underline">&nbsp;&nbsp;Find Sudoku&nbsp;&nbsp;&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-light">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">
@@ -147,7 +147,7 @@
                 </svg>
                 <router-link :to="'/upload'" class="text-black no-underline">&nbsp;&nbsp;Upload Puzzle&nbsp;</router-link>
             </button>
-            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-lighter">
+            <button class="sidebar-icon flex-initial flex justify-left items-center px-4 py-2 text-black cursor-pointer mb-4 rounded-lg w-close hover:bg-grey-light">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="24px" height="24px" viewBox="0 0 24px 24px"
                 preserveAspectRatio="xMidYMid meet">

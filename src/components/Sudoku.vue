@@ -4,9 +4,9 @@
           <tbody v-html =  "puzzleTable"></tbody>
     </table>
     <div class = "flex-1" id="button-panel">
-      <button @click = "localSolve" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Solve</button>
-      <button @click = "localCheck" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Check</button>
-      <button @click = "localClear" class = "inline-block mx-1 my-1 px-2 py-2 rounded-lg bg-grey-lighter text-black no-underline hover:bg-grey">Clear</button>
+      <button @click = "localSolve" class = "select-but">Solve</button>
+      <button @click = "localCheck" class = "select-but">Check</button>
+      <button @click = "localClear" class = "select-but">Clear</button>
     </div>
     <div class = "flex-1 m-2" id = "message-panel">
       <p>{{message}}</p>
@@ -19,6 +19,7 @@
 
   const printTable = (sudoku, size) =>{
         let result = "";
+        const boxSize = Math.sqrt(size);
         if(sudoku.length != size * size) return "Error in reading Sudoku." + sudoku.length
         for(let i = 1; i <= size * size ; i++){
             if(i % size == 1){
@@ -29,10 +30,13 @@
             if((i-1)/size <1) result +='cell-bt '
             if(i % size == 1) result +='cell-bl '
             if((i-1)/size >= size-1) result +='cell-bb '
+            if(((i-1)/size < size-1) && Math.floor((i - 1) / size) % boxSize == boxSize - 1) result +='cell-bb-h '
             if(i % size == 0) result +='cell-br '
+            if(i % boxSize == 0 && i % size != 0) result += 'cell-br-h '
             result += ' ">'
+
             if(Number.isInteger(sudoku[i-1]) && Number(sudoku[i-1]) != 0){
-                result += '<div class = "cell flex items-center justify-center"> ' + Number(sudoku[i-1]).toString() + ' </div>'
+                result += '<div class = "cell flex items-center justify-center bg-grey-light"> ' + Number(sudoku[i-1]).toString() + ' </div>'
             }else{
                 result += `<input oninput = "this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class = "cell cell-input" type="text" size="1" autocomplete="off" maxlength="1" name="${i}" value="" />`
             }
