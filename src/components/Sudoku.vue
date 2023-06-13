@@ -7,6 +7,7 @@
       <button @click = "localSolve" class = "select-but">Solve</button>
       <button @click = "localCheck" class = "select-but">Check</button>
       <button @click = "localClear" class = "select-but">Clear</button>
+      <button @click = "" class = "select-but">Save</button>
     </div>
     <div class = "flex-1 m-2" id = "message-panel">
       <p>{{message}}</p>

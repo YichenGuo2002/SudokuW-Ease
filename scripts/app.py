@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sudoku import solve
 from scrape import scrape
+from flask_graphql import GraphQLView
+from schema import schema
+import graphene
+
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -32,6 +36,16 @@ def postScrape():
         "statusCode": 200,
     }
     return jsonify(data)
+
+app.add_url_rule('/graphql',view_func=GraphQLView.as_view(
+    'graphql',
+     schema=schema,
+     graphiql=True
+    )
+)
+
+class Query(graphene.ObjectType):
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,7 +2,7 @@ const URL = "http://127.0.0.1:5000";
 const electron = require('electron')
 const { ipcRenderer } = require('electron');
 
-// Solve page (Sudoku component) requests
+// Solving Sudoku puzzles (Sudoku component requests)
 const solve = async (sudoku, size) =>{
     return await fetch(URL+"/solve", {
         // Adding method type
@@ -26,7 +26,7 @@ const solve = async (sudoku, size) =>{
         })
 }
 
-// Find page requests
+// Scraping Sudoku puzzles(Find page requests)
 const scrape = async (index, difficulty) =>{
     return await fetch(URL+"/scrape", {
     // Adding method type
