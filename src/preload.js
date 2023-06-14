@@ -1,52 +1,75 @@
-const URL = "http://127.0.0.1:5000";
+const URL = "http://127.0.0.1:5000/graphql";
 const electron = require('electron')
 const { ipcRenderer } = require('electron');
 
 // Solving Sudoku puzzles (Sudoku component requests)
 const solve = async (sudoku, size) =>{
-    return await fetch(URL+"/solve", {
+    const query = `mutation SolveSudoku {
+        solveSudoku(
+          sudoku: ${JSON.stringify(sudoku)},
+          size: ${size}
+        ){
+          solution
+          time
+        }
+      }`;
+    
+    return await fetch(URL, {
         // Adding method type
         method: "POST",
         // Adding body or contents to send
         body: JSON.stringify({
-            sudoku: sudoku,
-            size: size
-        }),
+            query: query
+          }),
         // Adding headers to the request
         headers: {
-            "Content-type": "application/json; charset=UTF-8"
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
         }
         })
         // Converting to JSON
         .then((response) => {
             return response.json()
-        }).then((data) =>{
-            console.log(data)
-            return data.body
+        }).then((response) =>{
+            console.log(response)
+            return response.data.solveSudoku
         })
 }
 
 // Scraping Sudoku puzzles(Find page requests)
 const scrape = async (index, difficulty) =>{
-    return await fetch(URL+"/scrape", {
+    const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
     // Adding method type
     method: "POST",
     // Adding body or contents to send
     body: JSON.stringify({
-        index: index,
-        difficulty: difficulty
+        query: query
     }),
     // Adding headers to the request
     headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
     }
     })
     // Converting to JSON
     .then((response) => {
         return response.json()
-    }).then((data) =>{
-        console.log(data)
-        return data.body
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
     })
 }
 
