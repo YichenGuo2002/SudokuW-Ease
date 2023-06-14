@@ -178,3 +178,7 @@ def solve(grid, size):
     result['solution'] = solution
     return result
 
+if __name__ == '__main__':
+    sudoku = [0] * 81
+    print(len(sudoku))
+    print(solve(sudoku, 9))
