@@ -133,4 +133,15 @@ mutation SolveSudoku{
 	 time
   }
 }
+mutation ScrapeSudoku{
+  scrapeSudoku(
+		index: 6
+	) 
+	{
+   sudoku,
+		size,
+		difficulty
+  }
+}
+
 '''

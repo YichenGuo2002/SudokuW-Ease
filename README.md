@@ -91,7 +91,9 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL.*
 - (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. Set up styling for About page. :pleading_face:
-- (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.
+- (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database. Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. :cowboy_hat_face:
+
+:x: Found problem in handling Sudokus of wrong sizes. Need to optimize the error handling system.
 
 *Summer Week 5/10 Plan: Set up user system. Connect Application to PostgreSQL. Part I.*
 
