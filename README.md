@@ -54,8 +54,9 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 - Python
 - Electron
 - VueJS
-- SQLite
+- PostgreSQL
 - Flask
+- GraphQL, Graphene
 - BeautifulSoup
 - Fetch API
 - Tailwind CSS
@@ -80,10 +81,11 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 #### Development Progress:
 **2023 Summer**: 
 - [ ] Finish current features; 
-- [ ] Refactor RESTful APIs to GraphQL APIs; 
+- [x] Refactor RESTful APIs to GraphQL APIs; 
 - [ ] Connect to PostgreSQL; 
 - [ ] Set up CI/CD pipeline;
-- [ ] Improve performance: Vue takes a lot of load time.
+- [ ] Improve performance: Vue takes a lot of load time;
+- [ ] Optimize system error handling.
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
 - (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
@@ -91,8 +93,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL.*
 - (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. Set up styling for About page. :pleading_face:
-- (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.     Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. Set up frontend fetch API GraphQL request query. :cowboy_hat_face:
-:x: Found problem in handling Sudokus of wrong sizes. Need to optimize the error handling system.
+- (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.     Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. Set up frontend fetch API GraphQL request query. Found problem in system error handling. :cowboy_hat_face:
 
 *Summer Week 5/10 Plan: Set up user system. Connect Application to PostgreSQL. Part I.*
 
