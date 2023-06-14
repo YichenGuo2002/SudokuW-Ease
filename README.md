@@ -13,6 +13,7 @@ Sudoku made effortless! Solve any puzzle, scrape online games, and create custom
 - [Product Architecture](#product-architecture)
 - [Incoming Features](#incoming-features)
 - [Acknowledgement](#acknowledgement)
+- [Lab Doc](#lab-doc)
 
 ### Project Background
 Are you ...
@@ -116,6 +117,10 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 ### Acknowledgement
 
 Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&index=4&ab_channel=TheAssembly) and [Peter Novig](http://norvig.com/sudoku.html)'s Sudoku Algorithms, and [澁谷直樹](https://kikaben.com/)'s tech blog. I was able to learn a lot about traditional Sudoku algorithms.
+
+### Lab Doc
+
+1. [Lab1 - RESTful API vs GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf)
 
 ### Git Cheatsheet:
 ```
