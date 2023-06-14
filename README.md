@@ -92,9 +92,10 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
 - (06/09/23): Changed background color. Removed border line to improve aesthetics.
 
-*Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL:heavy_check_mark:.*
+*Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL:heavy_check_mark:. Implement GraphQL realtime updates.*
 - (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. Set up styling for About page. :pleading_face:
 - (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.     Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. Set up frontend fetch API GraphQL request query. Found problem in system error handling. :cowboy_hat_face:
+- (06/14/23): Tested speed of RESTful API and GraphQL. Wrote lab doc for examining the pros and cons of using GraphQL. Planned to implement GraphQL realtime updates.
 
 *Summer Week 5/10 Plan: Set up user system. Connect Application to PostgreSQL. Part I.*
 

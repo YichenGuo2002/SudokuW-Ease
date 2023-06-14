@@ -146,12 +146,15 @@
         this.message = ""
       },
       async localSolve(){
-        return await solve(collect(), this.localPuzzle.size)
+        console.time('Execution Time');
+        let solution =  await solve(collect(), this.localPuzzle.size)
                 .then(result =>{
                     console.log("I get the result", result)
                     this.localPuzzle.sudoku = result.solution
                     this.message = `Solved in ${(result.time * 1000).toFixed(5)} ms.`
                 })
+        console.timeEnd('Execution Time');
+        return solution
       },
       localCheck(){
         if(check()){

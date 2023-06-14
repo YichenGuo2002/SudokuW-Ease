@@ -8,7 +8,7 @@ import graphene
 app = Flask(__name__)
 cors = CORS(app)
 
-''' 
+'''
 # Flask RESTful APIs
 @app.route("/solve", methods=["POST"])
 def postSolve():
