@@ -50,7 +50,7 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 
 
 ### Technology
-- JavaScript
+- JavaScript, Typescript
 - Python
 - Electron
 - VueJS
@@ -85,13 +85,14 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - [ ] Connect to PostgreSQL; 
 - [ ] Set up CI/CD pipeline;
 - [ ] Improve performance: Vue takes a lot of load time;
-- [ ] Optimize system error handling.
+- [ ] Optimize system error handling;
+- [ ] Convert Javascript to Typescript.
 
 - (06/07/23): Made plans for the project and decided tech stack to use. :notebook_with_decorative_cover:
 - (06/08/23): Restructured and revisited existing code. Changed the font to Roboto. :facepalm:
 - (06/09/23): Changed background color. Removed border line to improve aesthetics.
 
-*Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL.*
+*Summer Week 4/10 Plan: Finish the About page. Adapt application to GraphQL:heavy_check_mark:.*
 - (06/12/23): Changed button color. Added border line to each box. Optimized button styling by clustering inline CSS rules to external style sheets. Set up styling for About page. :pleading_face:
 - (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.     Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. Set up frontend fetch API GraphQL request query. Found problem in system error handling. :cowboy_hat_face:
 
@@ -108,6 +109,8 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 *Summer Week 10/10 Plan: (tbd) Secure application delivery using AWS AppStream 2.0. Prepare for final showcase. Part II*
 
 *Summer after 10-Week Plan: App announced in my personal portfolio and showcased via Youtube.*
+
+*Summer if possible: Convert Javascript to Typescript*
 
 ### Acknowledgement
 
