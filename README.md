@@ -99,6 +99,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/14/23): Tested speed of RESTful API and GraphQL. Wrote [lab doc for examining the pros and cons of using GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf). Planned to implement GraphQL realtime updates.
 
 *Summer Week 5/10 Plan: Implement GraphQL realtime updates. Set up user system. Connect Application to PostgreSQL. Part I.*
+- (06/20/23): Set up web socket environment for realtime backend update. Still learning the concepts of web sockets. It is hard so took some time. Hope I can get through it!
 
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
 
@@ -123,8 +124,8 @@ Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&i
 1. [Lab1 - RESTful API vs GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf)
 
 ### Git Cheatsheet:
+[Emojicode](https://github.com/ikatyang/emoji-cheat-sheet) //cheatsheet
 ```
-https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md //emojicode cheatsheet
 
 git pull //sync local repo
 ```
