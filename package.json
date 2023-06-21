@@ -22,6 +22,7 @@
     "graphql-yoga": "^4.0.0",
     "path": "^0.12.7",
     "postcss": "^8.4.21",
+    "socket.io-client": "^4.6.2",
     "vue": "^3.2.47",
     "vuex": "^4.0.2"
   },

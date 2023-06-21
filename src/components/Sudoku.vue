@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  const {solve, scrape} = window.electron
+  const {solve, scrape, socket_on, socket_off} = window.electron;
 
   const printTable = (sudoku, size) =>{
         let result = "";
@@ -146,15 +146,20 @@
         this.message = ""
       },
       async localSolve(){
-        console.time('Execution Time');
-        let solution =  await solve(collect(), this.localPuzzle.size)
-                .then(result =>{
-                    console.log("I get the result", result)
-                    this.localPuzzle.sudoku = result.solution
-                    this.message = `Solved in ${(result.time * 1000).toFixed(5)} ms.`
-                })
-        console.timeEnd('Execution Time');
-        return solution
+        socket_on();
+        let result;
+        try {
+          let result = await solve(collect(), this.localPuzzle.size);
+          console.log("I get the result", result);
+          this.localPuzzle.sudoku = result.solution;
+          this.message = `Solved in ${(result.time * 1000).toFixed(5)} ms.`;
+        } catch (error) {
+          console.error("An error occurred while solving the puzzle:", error);
+          throw error;
+        } finally {
+          socket_off();
+        }
+        return result;
       },
       localCheck(){
         if(check()){

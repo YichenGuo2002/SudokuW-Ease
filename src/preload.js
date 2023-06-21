@@ -1,5 +1,10 @@
 const electron = require('electron')
 const { ipcRenderer } = require('electron');
+const { app, BrowserWindow, contextBridge } = require('electron');
+import io from 'socket.io-client';
+
+// Establish WebSocket connection
+const socket = io('http://localhost:5000');
 
 /*
 // Fetching RESTful APIs
@@ -129,6 +134,22 @@ const scrape = async (index, difficulty) =>{
     })
 }
 
+const socket_on = () => {
+    // Subscribe to 'new_message' event
+    socket.emit('subscribe', { event: 'function_update' });
+
+    // Handle 'function_update' event
+    socket.on('function_update', (message) => {
+        // Update your UI or perform actions based on the received message
+        console.log('Received function update:', message.text);
+    });
+}
+
+const socket_off = () => {
+    socket.emit('unsubscribe', { event: 'function_update' });
+    socket.off('function_update')
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("btn-close").addEventListener('click', () => {
         ipcRenderer.invoke('quit-app');
@@ -139,21 +160,9 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-electron.contextBridge.exposeInMainWorld('electron', {
-    solve,
-    scrape
-  });
-
-/*subscription
-// Establish WebSocket connection
-const socket = io.connect('http://localhost:5000');
-
-// Subscribe to 'new_message' event
-socket.emit('subscribe', { subscription: 'new_message' });
-
-// Handle 'new_message' event
-socket.on('new_message', (message) => {
-  // Update your UI or perform actions based on the received message
-  console.log('Received new message:', message.text);
+contextBridge.exposeInMainWorld('electron', {
+    solve: solve, // Expose the solve function
+    scrape: scrape, // Expose the scrape function
+    socket_on: socket_on, // Expose the socket_on function
+    socket_off: socket_off // Expose the socket_off function
 });
-*/

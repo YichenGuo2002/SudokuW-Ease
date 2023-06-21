@@ -4,12 +4,19 @@ from sudoku import solve
 from scrape import scrape
 from flask_graphql import GraphQLView
 from flask_sockets import Sockets
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room, leave_room
 import graphene
+import uuid
+import json
+
+def generate_execution_id():
+    # Generate a UUID as the execution ID
+    return str(uuid.uuid4())
 
 app = Flask(__name__)
 cors = CORS(app)
 socketio = SocketIO(app)
+sockets = Sockets(app)
 
 '''
 # Flask RESTful APIs
@@ -53,15 +60,26 @@ class SolveSudoku(graphene.Mutation):
         sudoku = graphene.List(graphene.Int, required=True)
         size = graphene.Int(required = True)
 
+    execution_id = graphene.String()
     solution = graphene.List(graphene.Int, required = True)
     time = graphene.Float(required = True)
 
     def mutate(root, info, sudoku, size):
-        # Call solve() function passing the
+        # Generate a unique execution ID
+        execution_id = generate_execution_id()
+
+        # Emit subscription event indicating the start of the function execution
+        emit('function_update', {'execution_id': execution_id, 'text': 'Solving...'})
+
+        # Call solve() function, passing the arguments
         solved_sudoku = solve(sudoku, size)
+
+        # Emit subscription event indicating the function is finished
+        emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
 
         # Convert the solved puzzle to a plain list of integers
         return SolveSudoku(
+            execution_id=execution_id,
             solution = solved_sudoku['solution'],
             time = solved_sudoku['time']
         )
@@ -71,27 +89,41 @@ class ScrapeSudoku(graphene.Mutation):
         index = graphene.Int(required = True)
         difficulty = graphene.String(required = False)
 
+    execution_id = graphene.String()
     sudoku = graphene.List(graphene.Int, required = True)
     size = graphene.Int(required = True)
     difficulty = graphene.String(required = False)
 
     def mutate(root, info, index, difficulty = ''):
-        # Call scrape() function passing the
+         # Generate a unique execution ID
+        execution_id = generate_execution_id()
+
+        # Emit subscription event indicating the start of the function execution
+        emit('function_update', {'execution_id': execution_id, 'text': 'Retrieving...'})
+
+        # Call scrape() function passing the arguments
         scraped_sudoku = scrape(index, difficulty)
 
         # Convert the solved puzzle to a plain list of integers
         if 'difficulty' in scraped_sudoku:
-            return ScrapeSudoku(
-                sudoku = scraped_sudoku['sudoku'],
-                size = scraped_sudoku['size'],
-                difficulty = scraped_sudoku['difficulty']
+            result = ScrapeSudoku(
+                execution_id=execution_id,
+                sudoku=scraped_sudoku['sudoku'],
+                size=scraped_sudoku['size'],
+                difficulty=scraped_sudoku['difficulty']
             )
         else:
-            return ScrapeSudoku(
-                sudoku = scraped_sudoku['sudoku'],
-                size = scraped_sudoku['size'],
-                difficulty = ''
+            result = ScrapeSudoku(
+                execution_id=execution_id,
+                sudoku=scraped_sudoku['sudoku'],
+                size=scraped_sudoku['size'],
+                difficulty=''
             )
+
+        # Emit subscription event indicating the function is finished
+        emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
+
+        return result
         
 '''
 class Query(graphene.ObjectType):
@@ -104,11 +136,12 @@ class Mutation(graphene.ObjectType):
     scrape_sudoku = ScrapeSudoku.Field()
 
 class Subscription(graphene.ObjectType):
-    new_message = graphene.Field(Message)
+    function_update = graphene.Field(Message, execution_id=graphene.String())
 
-    def resolve_new_message(root, info):
-        # Implement your resolver logic here
-        return [...]
+    def resolve_function_update(root, info, execution_id):
+        # Subscribe to the function_update event based on the execution_id
+        # Return the execution updates for the specified execution_id
+        return Message(text='Function updates.')
 
 schema = graphene.Schema(
     #query = Query, 
@@ -116,16 +149,24 @@ schema = graphene.Schema(
     subscription = Subscription
 )
 
-@socketio.on('subscribe')
-def handle_subscribe(subscription_params):
-    subscription = subscription_params.get('subscription')
-    # Implement your subscription logic here
-    # Use 'emit' to send updates to subscribed clients
+@sockets.route('/graphql')
+def handle_websocket(sock):
+    while not sock.closed:
+        message = sock.receive()
+        if message:
+            # Parse the incoming WebSocket message
+            data = json.loads(message)
+            event = data.get('event')
+            execution_id = data.get('execution_id')
 
-@socketio.on('unsubscribe')
-def handle_unsubscribe(subscription_params):
-    subscription = subscription_params.get('subscription')
-    # Implement your unsubscription logic here
+            if event == 'subscribe':
+                # Join the room based on the execution_id
+                join_room(execution_id)
+                emit('function_update', {'execution_id': execution_id, 'text': 'Subscribed'}, room=execution_id)
+            elif event == 'unsubscribe':
+                # Leave the room based on the execution_id
+                leave_room(execution_id)
+                emit('function_update', {'execution_id': execution_id, 'text': 'Unsubscribed'}, room=execution_id)
 
 app.add_url_rule(
     '/graphql',
