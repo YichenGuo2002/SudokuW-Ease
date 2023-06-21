@@ -143,3 +143,17 @@ electron.contextBridge.exposeInMainWorld('electron', {
     solve,
     scrape
   });
+
+/*subscription
+// Establish WebSocket connection
+const socket = io.connect('http://localhost:5000');
+
+// Subscribe to 'new_message' event
+socket.emit('subscribe', { subscription: 'new_message' });
+
+// Handle 'new_message' event
+socket.on('new_message', (message) => {
+  // Update your UI or perform actions based on the received message
+  console.log('Received new message:', message.text);
+});
+*/

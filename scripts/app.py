@@ -3,10 +3,13 @@ from flask_cors import CORS
 from sudoku import solve
 from scrape import scrape
 from flask_graphql import GraphQLView
+from flask_sockets import Sockets
+from flask_socketio import SocketIO, emit
 import graphene
 
 app = Flask(__name__)
 cors = CORS(app)
+socketio = SocketIO(app)
 
 '''
 # Flask RESTful APIs
@@ -41,6 +44,9 @@ def postScrape():
 
 class Sudoku(graphene.ObjectType):
     arr = graphene.List(graphene.Int)
+
+class Message(graphene.ObjectType):
+    text = graphene.String()
 
 class SolveSudoku(graphene.Mutation):
     class Arguments:
@@ -86,21 +92,40 @@ class ScrapeSudoku(graphene.Mutation):
                 size = scraped_sudoku['size'],
                 difficulty = ''
             )
-
-class Mutation(graphene.ObjectType):
-    solve_sudoku = SolveSudoku.Field()
-    scrape_sudoku = ScrapeSudoku.Field()
-
+        
 '''
 class Query(graphene.ObjectType):
     # Add any necessary query fields here
     pass
 '''
 
+class Mutation(graphene.ObjectType):
+    solve_sudoku = SolveSudoku.Field()
+    scrape_sudoku = ScrapeSudoku.Field()
+
+class Subscription(graphene.ObjectType):
+    new_message = graphene.Field(Message)
+
+    def resolve_new_message(root, info):
+        # Implement your resolver logic here
+        return [...]
+
 schema = graphene.Schema(
-    #query=Query, 
-    mutation=Mutation
+    #query = Query, 
+    mutation = Mutation,
+    subscription = Subscription
 )
+
+@socketio.on('subscribe')
+def handle_subscribe(subscription_params):
+    subscription = subscription_params.get('subscription')
+    # Implement your subscription logic here
+    # Use 'emit' to send updates to subscribed clients
+
+@socketio.on('unsubscribe')
+def handle_unsubscribe(subscription_params):
+    subscription = subscription_params.get('subscription')
+    # Implement your unsubscription logic here
 
 app.add_url_rule(
     '/graphql',
@@ -111,8 +136,9 @@ app.add_url_rule(
 )
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    socketio.run(app
+    # , host='0.0.0.0'
+                 )
 '''
 Sample request query: 
 mutation SolveSudoku{
