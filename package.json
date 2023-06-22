@@ -22,9 +22,11 @@
     "graphql-yoga": "^4.0.0",
     "path": "^0.12.7",
     "postcss": "^8.4.21",
-    "socket.io-client": "^4.6.2",
+    "socket.io": "^4.7.0",
+    "socket.io-client": "^4.7.0",
     "vue": "^3.2.47",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "electron": "^23.1.1",

@@ -1,68 +1,37 @@
 const electron = require('electron')
 const { ipcRenderer } = require('electron');
-const { app, BrowserWindow, contextBridge } = require('electron');
-import io from 'socket.io-client';
+const { app } = require('electron');
+//const { w3cwebsocket: WebSocket } = require('websocket');
 
 // Establish WebSocket connection
-const socket = io('http://localhost:5000');
+//const socket = new WebSocket('ws://localhost:5000');
 
+// Event listeners for WebSocket connection
 /*
-// Fetching RESTful APIs
-const URL = "http://127.0.0.1:5000/";
+socket.onopen = () => {
+    console.log('WebSocket connection established');
+};
 
-const solve = async (sudoku, size) =>{
-    return await fetch(URL + 'solve', {
-        // Adding method type
-        method: "POST",
-        // Adding body or contents to send
-        body: JSON.stringify({
-            sudoku: sudoku,
-            size: size
-          }),
-        // Adding headers to the request
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }
-        })
-        // Converting to JSON
-        .then((response) => {
-            return response.json()
-        }).then((response) =>{
-            console.log(response)
-            return response.body
-        })
-}
+  // Event listener for WebSocket connection errors
+socket.onerror = (error) => {
+    console.error('WebSocket error:', error);
+    console.error('WebSocket error message:', error.message);
+};
 
-// Scraping Sudoku puzzles(Find page requests)
-const scrape = async (index, difficulty) =>{
-    return await fetch(URL + 'scrape', {
-    // Adding method type
-    method: "POST",
-    // Adding body or contents to send
-    body: JSON.stringify({
-        index: index,
-        difficulty: difficulty
-    }),
-    // Adding headers to the request
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    }
-    })
-    // Converting to JSON
-    .then((response) => {
-        return response.json()
-    }).then((response) =>{
-        console.log(response)
-        return response.body
-    })
-}
-*/
-
+socket.onmessage = (event) => {
+    // Handle incoming messages
+    const message = JSON.parse(event.data);
+    console.log('Received function update:', message.text);
+    return false;
+};
+  
+socket.onclose = () => {
+    console.log('WebSocket connection closed');
+};*/
 
 // Fetching GraphQL APIs
 const URL = "http://127.0.0.1:5000/graphql";
+
 // Solving Sudoku puzzles (Sudoku component requests)
 const solve = async (sudoku, size) =>{
     const query = `mutation SolveSudoku {
@@ -134,21 +103,24 @@ const scrape = async (index, difficulty) =>{
     })
 }
 
+/*
 const socket_on = () => {
-    // Subscribe to 'new_message' event
-    socket.emit('subscribe', { event: 'function_update' });
-
-    // Handle 'function_update' event
-    socket.on('function_update', (message) => {
-        // Update your UI or perform actions based on the received message
-        console.log('Received function update:', message.text);
-    });
-}
-
-const socket_off = () => {
-    socket.emit('unsubscribe', { event: 'function_update' });
-    socket.off('function_update')
-}
+    // Subscribe to 'function_update' event
+    const message = {
+      event: 'function_update',
+      action: 'subscribe',
+    };
+    socket.send(JSON.stringify(message));
+  };
+  
+  const socket_off = () => {
+    // Unsubscribe from 'function_update' event
+    const message = {
+      event: 'function_update',
+      action: 'unsubscribe',
+    };
+    socket.send(JSON.stringify(message));
+  };*/
 
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("btn-close").addEventListener('click', () => {
@@ -160,9 +132,64 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-contextBridge.exposeInMainWorld('electron', {
-    solve: solve, // Expose the solve function
-    scrape: scrape, // Expose the scrape function
-    socket_on: socket_on, // Expose the socket_on function
-    socket_off: socket_off // Expose the socket_off function
+electron.contextBridge.exposeInMainWorld('electron', {
+    solve, // Expose the solve function
+    scrape// Expose the scrape function
+    //socket_on, // Expose the socket_on function
+    //socket_off // Expose the socket_off function
 });
+
+
+/*
+// Fetching RESTful APIs
+const URL = "http://127.0.0.1:5000/";
+
+const solve = async (sudoku, size) =>{
+    return await fetch(URL + 'solve', {
+        // Adding method type
+        method: "POST",
+        // Adding body or contents to send
+        body: JSON.stringify({
+            sudoku: sudoku,
+            size: size
+          }),
+        // Adding headers to the request
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+        })
+        // Converting to JSON
+        .then((response) => {
+            return response.json()
+        }).then((response) =>{
+            console.log(response)
+            return response.body
+        })
+}
+
+// Scraping Sudoku puzzles(Find page requests)
+const scrape = async (index, difficulty) =>{
+    return await fetch(URL + 'scrape', {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        index: index,
+        difficulty: difficulty
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.body
+    })
+}
+*/

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  const {solve, scrape, socket_on, socket_off} = window.electron;
+  const {solve, scrape} = window.electron;
 
   const printTable = (sudoku, size) =>{
         let result = "";
@@ -146,7 +146,7 @@
         this.message = ""
       },
       async localSolve(){
-        socket_on();
+        //socket_on();
         let result;
         try {
           let result = await solve(collect(), this.localPuzzle.size);
@@ -157,7 +157,7 @@
           console.error("An error occurred while solving the puzzle:", error);
           throw error;
         } finally {
-          socket_off();
+          //socket_off();
         }
         return result;
       },

@@ -3,8 +3,7 @@ from flask_cors import CORS
 from sudoku import solve
 from scrape import scrape
 from flask_graphql import GraphQLView
-from flask_sockets import Sockets
-from flask_socketio import SocketIO, emit, join_room, leave_room
+# from flask_sockets import FlaskWebSocket
 import graphene
 import uuid
 import json
@@ -15,8 +14,8 @@ def generate_execution_id():
 
 app = Flask(__name__)
 cors = CORS(app)
-socketio = SocketIO(app)
-sockets = Sockets(app)
+
+#sockets = FlaskWebSocket(app)
 
 '''
 # Flask RESTful APIs
@@ -69,13 +68,13 @@ class SolveSudoku(graphene.Mutation):
         execution_id = generate_execution_id()
 
         # Emit subscription event indicating the start of the function execution
-        emit('function_update', {'execution_id': execution_id, 'text': 'Solving...'})
+        # sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Solving...'})
 
         # Call solve() function, passing the arguments
         solved_sudoku = solve(sudoku, size)
 
         # Emit subscription event indicating the function is finished
-        emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
+        # sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
 
         # Convert the solved puzzle to a plain list of integers
         return SolveSudoku(
@@ -99,7 +98,7 @@ class ScrapeSudoku(graphene.Mutation):
         execution_id = generate_execution_id()
 
         # Emit subscription event indicating the start of the function execution
-        emit('function_update', {'execution_id': execution_id, 'text': 'Retrieving...'})
+        # sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Retrieving...'})
 
         # Call scrape() function passing the arguments
         scraped_sudoku = scrape(index, difficulty)
@@ -121,7 +120,7 @@ class ScrapeSudoku(graphene.Mutation):
             )
 
         # Emit subscription event indicating the function is finished
-        emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
+        # sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
 
         return result
         
@@ -135,6 +134,7 @@ class Mutation(graphene.ObjectType):
     solve_sudoku = SolveSudoku.Field()
     scrape_sudoku = ScrapeSudoku.Field()
 
+'''
 class Subscription(graphene.ObjectType):
     function_update = graphene.Field(Message, execution_id=graphene.String())
 
@@ -142,32 +142,30 @@ class Subscription(graphene.ObjectType):
         # Subscribe to the function_update event based on the execution_id
         # Return the execution updates for the specified execution_id
         return Message(text='Function updates.')
-
+'''
 schema = graphene.Schema(
     #query = Query, 
-    mutation = Mutation,
-    subscription = Subscription
+    mutation = Mutation
+    #subscription = Subscription
 )
+'''
+class FunctionUpdateWebSocket(FlaskWebSocket):
+    def on_message(self, message):
+        data = json.loads(message)
+        event = data.get('event')
+        execution_id = data.get('execution_id')
 
-@sockets.route('/graphql')
-def handle_websocket(sock):
-    while not sock.closed:
-        message = sock.receive()
-        if message:
-            # Parse the incoming WebSocket message
-            data = json.loads(message)
-            event = data.get('event')
-            execution_id = data.get('execution_id')
+        if event == 'subscribe':
+            # Join the room based on the execution_id
+            self.join_room(execution_id)
+            sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Subscribed'}, room=execution_id)
+        elif event == 'unsubscribe':
+            # Leave the room based on the execution_id
+            self.leave_room(execution_id)
+            sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Unsubscribed'}, room=execution_id)
 
-            if event == 'subscribe':
-                # Join the room based on the execution_id
-                join_room(execution_id)
-                emit('function_update', {'execution_id': execution_id, 'text': 'Subscribed'}, room=execution_id)
-            elif event == 'unsubscribe':
-                # Leave the room based on the execution_id
-                leave_room(execution_id)
-                emit('function_update', {'execution_id': execution_id, 'text': 'Unsubscribed'}, room=execution_id)
-
+sockets.register_blueprint(FunctionUpdateWebSocket, url_prefix='/')
+'''
 app.add_url_rule(
     '/graphql',
     view_func=GraphQLView.as_view(
@@ -177,9 +175,7 @@ app.add_url_rule(
 )
 
 if __name__ == '__main__':
-    socketio.run(app
-    # , host='0.0.0.0'
-                 )
+    app.run(debug=True)
 '''
 Sample request query: 
 mutation SolveSudoku{

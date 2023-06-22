@@ -100,6 +100,8 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer Week 5/10 Plan: Implement GraphQL realtime updates. Set up user system. Connect Application to PostgreSQL. Part I.*
 - (06/20/23): Set up web socket environment for realtime backend update. Still learning the concepts of web sockets. It is hard so took some time. Hope I can get through it! :sweat:
+- (06/21/23): Implemented SocketIO front end to send requests. Failed, couldn't find Socket.io-client module, and started troubleshooting.
+- (06/22/23): Switched to WebSockets front end to send requests. Modified Electron Windows option to enable web socket, but failed again for unknown reason. Decided that WebSocket is taking too long to implement and commented out this part for further implementation. This week, focus on connecting to PostgreSQL first. :mask:
 
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
 
