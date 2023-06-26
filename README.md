@@ -73,7 +73,7 @@ The back-end of this project is built on the Python framework, with a [Flask ser
 
 <img width="100%" alt="Project Structure" src="./doc/system%20design.png">
 <img width="70%" alt="GraphQL Requests" src="./doc/graphql%20requests.png">
-<img width="70%" alt="User Database Design" src="./doc/user%20table.png">
+<img width="80%" alt="User Database Design" src="./doc/user%20table.png">
 <img width="70%" alt="Sudoku Database Design" src="./doc/sudoku%20table.png">
 
 Overall, this project utilizes a client-server architecture with a multi-tier structure. Each tier has separated functionalities, helping to increase the scalability and flexibility of the project.
