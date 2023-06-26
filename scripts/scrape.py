@@ -137,5 +137,3 @@ def scrape(index, difficulty = ""):
             "sudoku": sudoku,
             "size": size
         }
-
-print(scrapeMenneskeNo())
