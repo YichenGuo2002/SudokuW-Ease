@@ -71,7 +71,10 @@ The front-end of this project is built using the Electron-vue framework. The mai
 
 The back-end of this project is built on the Python framework, with a [Flask server](https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/scripts/app.py) connected to the BeautifulSoup [web scraping algorithm](https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/scripts/scrape.py) and the [AI Sudoku solver algorithm](https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/scripts/sudoku.py). When requests are received, the Flask server sends the result back to the front-end. We are also working on connecting the back-end Flask to SQLite to allow users to save their favorite Sudoku puzzles.
 
-<img width="100%" alt="Project Structure" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=truehttps://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/architecture_demo.jpg?raw=true">
+<img width="100%" alt="Project Structure" src="./doc/system%20design.png">
+<img width="100%" alt="Project Structure" src="./doc/graphql%20requests.png">
+<img width="100%" alt="Project Structure" src="./doc/user%20table.png.png">
+<img width="100%" alt="Project Structure" src="./doc/sudoku%20table.png.png">
 
 Overall, this project utilizes a client-server architecture with a multi-tier structure. Each tier has separated functionalities, helping to increase the scalability and flexibility of the project.
 
@@ -98,12 +101,13 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/13/23): Learned about GraphQL. Decided to refactor existing Flask RESTful API to GraphQL + Graphene and connect to PostgreSQL database.     Finished reconstructing a GraphQL+Graphene+Flask backend API system, and examined through Insomia. Set up frontend fetch API GraphQL request query. Found problem in system error handling. :cowboy_hat_face:
 - (06/14/23): Tested speed of RESTful API and GraphQL. Wrote [lab doc for examining the pros and cons of using GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf). Planned to implement GraphQL realtime updates.
 
-*Summer Week 5/10 Plan: Implement GraphQL realtime updates. Set up user system. Connect Application to PostgreSQL. Part I.*
+*Summer Week 5/10 Plan: Implement GraphQL realtime updates. :o: Set up user system. Connect Application to PostgreSQL. Part I.*
 - (06/20/23): Set up web socket environment for realtime backend update. Still learning the concepts of web sockets. It is hard so took some time. Hope I can get through it! :sweat:
 - (06/21/23): Implemented SocketIO front end to send requests. Failed, couldn't find Socket.io-client module, and started troubleshooting.
 - (06/22/23): Switched to WebSockets front end to send requests. Modified Electron Windows option to enable web socket, but failed again for unknown reason. Decided that WebSocket is taking too long to implement and commented out this part for further implementation. This week, focus on connecting to PostgreSQL first. :mask:
 
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
+- (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL data base integration and user system.
 
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
 
@@ -124,10 +128,10 @@ Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&i
 ### Lab Doc
 
 1. [Lab1 - RESTful API vs GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf)
+2. [Lab2 - Web Socket & Database Design](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf)
 
 ### Git Cheatsheet:
 [Emojicode cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet)
 ```
-
 git pull //sync local repo
 ```
