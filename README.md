@@ -55,11 +55,11 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 - Python
 - Electron
 - VueJS
-- PostgreSQL
+- PostgreSQL, SQLAlchemy, psycopg2
 - Flask
-- GraphQL, Graphene
-- BeautifulSoup
-- Fetch API
+- GraphQL, Graphene, WebSockets
+- BeautifulSoup, Selenium
+- Fetch APIs
 - Tailwind CSS
 - HTML & CSS
 
@@ -108,7 +108,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
 - (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL database integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
-- (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables.
+- (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables. Implemented basic backend function logic. Still need to consider error handling.
 - (06/28/23): *Write backend functions.*
 - (06/29/23): *Research about how to update Vue environment/context for "signed in" and "signed out" status. Implement user login and logout logic.*
 - (06/30/23): *Implement preload.js fetch API functions.*
@@ -136,12 +136,10 @@ Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&i
 
 ### Cheatsheet:
 1. [Emojicode cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet)
-
 2. Git command
 ```
 git pull //sync local repo
 ```
-
 3. Sample request query: 
 ```
 mutation SolveSudoku{
@@ -174,12 +172,12 @@ mutation ScrapeSudoku{
   }
 }
 ```
-
-4. create models:
-Go to python shell by running python and return
+4. Create PostgreSQL models:
+Go to python shell by running python and return:
 ```
 from app import app, db
 with app.app_context():
     db.create_all()
+exit()
+# Only need to run this once.
 ```
-Only need to run this once.

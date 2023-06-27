@@ -9,6 +9,7 @@ import uuid
 import json
 from flask_sqlalchemy import SQLAlchemy
 import config
+from user import register, login, removeUser, fav, getFav, removeFav
 
 def generate_execution_id():
     # Generate a UUID as the execution ID
@@ -19,6 +20,42 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 cors = CORS(app)
 db = SQLAlchemy(app)
+
+class User(db.Model):
+    __tablename__ = 'user_table'
+
+    id = db.Column(db.Integer, primary_key = True)
+    email = db.Column(db.String(60))
+    password = db.Column(db.String(24))
+    name = db.Column(db.String(24))
+    fav = db.relationship('Sudoku', backref='user')
+
+    def __init__(self, email, password, name):
+        self.email = email
+        self.password = password
+        self.name = name
+        self.fav = []
+ 
+    def __repr__(self):
+        return 'User number {userId} with email {email}.'.format(userId = self.id, email = self.email)
+    
+    def add_fav(self, sudoku):
+        self.fav.append(sudoku)
+        db.session.commit()
+
+class Sudoku(db.Model):
+    __tablename__ = 'sudoku_table'
+
+    id = db.Column(db.Integer, primary_key = True)
+    sudoku = db.Column(db.ARRAY(db.Integer))
+    userId = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+
+    def __init__(self, sudoku, userId):
+        self.sudoku = sudoku
+        self.userId = userId
+ 
+    def __repr__(self):
+        return 'Sudoku number {sudokuId} is {sudoku}.'.format(sudokuId = self.userId, sudoku = self.sudoku)
 
 #sockets = FlaskWebSocket(app)
 
