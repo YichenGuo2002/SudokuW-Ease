@@ -1,8 +1,7 @@
 node_modules
 #Electron-builder output
 /dist_electron
-_pycache_/
-scripts/_pychache_/.
-scripts/_pychache_/
-scripts/_pychache_
+__pycache__
+scripts/__pycache__/.
+scripts/__pycache__/
 scripts/config.py
