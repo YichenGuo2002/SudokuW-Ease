@@ -74,7 +74,7 @@ The back-end of this project is built on the Python framework, with a [Flask ser
 <img width="100%" alt="Project Structure" src="./doc/system%20design.png">
 <img width="70%" alt="GraphQL Requests" src="./doc/graphql%20requests.png">
 <img width="80%" alt="User Database Design" src="./doc/user%20table.png">
-<img width="70%" alt="Sudoku Database Design" src="./doc/sudoku%20table.png">
+<img width="60%" alt="Sudoku Database Design" src="./doc/sudoku%20table.png">
 
 Overall, this project utilizes a client-server architecture with a multi-tier structure. Each tier has separated functionalities, helping to increase the scalability and flexibility of the project.
 
@@ -107,8 +107,8 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/22/23): Switched to WebSockets front end to send requests. Modified Electron Windows option to enable web socket, but failed again for unknown reason. Decided that WebSocket is taking too long to implement and commented out this part for further implementation. This week, focus on connecting to PostgreSQL first. :mask:
 
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
-- (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL data base integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
-- (06/27/23): *Set up PostgreSQL and establish connection.*
+- (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL database integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
+- (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables.
 - (06/28/23): *Write backend functions.*
 - (06/29/23): *Research about how to update Vue environment/context for "signed in" and "signed out" status. Implement user login and logout logic.*
 - (06/30/23): *Implement preload.js fetch API functions.*
@@ -123,7 +123,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer after 10-Week Plan: App announced in my personal portfolio and showcased via Youtube.*
 
-*Summer if possible: Convert Javascript to Typescript*
+*Summer if possible: Convert Javascript to Typescript. Examine Error handling and validation. Review Code.*
 
 ### Acknowledgement
 
@@ -134,8 +134,52 @@ Thanks to [The Assembly's](https://www.youtube.com/watch?v=GX4c13SSBrs&list=WL&i
 1. [Lab1 - RESTful API vs GraphQL](./doc/SudokuW_Ease%20Lab%201%20RESTful%20API%20vs%20GraphQL.pdf)
 2. [Lab2 - Web Socket & Database Design](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf)
 
-### Git Cheatsheet:
-[Emojicode cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet)
+### Cheatsheet:
+1. [Emojicode cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet)
+
+2. Git command
 ```
 git pull //sync local repo
 ```
+
+3. Sample request query: 
+```
+mutation SolveSudoku{
+  solveSudoku(
+		sudoku: [0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		size: 9
+	) 
+	{
+   solution,
+	 time
+  }
+}
+
+mutation ScrapeSudoku{
+  scrapeSudoku(
+		index: 6
+	) 
+	{
+   sudoku,
+		size,
+		difficulty
+  }
+}
+```
+
+4. create models:
+Go to python shell by running python and return
+```
+from app import app, db
+with app.app_context():
+    db.create_all()
+```
+Only need to run this once.

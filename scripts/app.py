@@ -7,13 +7,18 @@ from flask_graphql import GraphQLView
 import graphene
 import uuid
 import json
+from flask_sqlalchemy import SQLAlchemy
+import config
 
 def generate_execution_id():
     # Generate a UUID as the execution ID
     return str(uuid.uuid4())
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = config.db
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 cors = CORS(app)
+db = SQLAlchemy(app)
 
 #sockets = FlaskWebSocket(app)
 
@@ -176,36 +181,3 @@ app.add_url_rule(
 
 if __name__ == '__main__':
     app.run(debug=True)
-'''
-Sample request query: 
-mutation SolveSudoku{
-  solveSudoku(
-		sudoku: [0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		size: 9
-	) 
-	{
-   solution,
-	 time
-  }
-}
-
-mutation ScrapeSudoku{
-  scrapeSudoku(
-		index: 6
-	) 
-	{
-   sudoku,
-		size,
-		difficulty
-  }
-}
-
-'''

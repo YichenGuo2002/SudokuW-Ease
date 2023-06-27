@@ -2,6 +2,7 @@
 
 '''
 ## Email restrictions: 
+Maximum email length <= 60
 Allowed characters:
 latin letters (a-z).
 numbers (0-9).
