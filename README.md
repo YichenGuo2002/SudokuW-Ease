@@ -27,25 +27,25 @@ I created the project out of a desire for an all-in-one solution for Sudoku love
 ### App Usage
  - Sudoku Solving
 
- This app includes a user-friendly Sudoku board interface to display puzzles of various sizes, including 4×4, 9×9, 16×16, and 25×25. The "Solve" button below initiates backend API calls to Python Flask endpoints, providing fast and accurate solutions in milliseconds. Users can also dynamically modify the puzzle by inputting values into empty boxes and check their solutions for accuracy. 
+ 	This app includes a user-friendly Sudoku board interface to display puzzles of various sizes, including 4×4, 9×9, 16×16, and 25×25. The "Solve" button below initiates backend API calls to Python Flask endpoints, providing fast and accurate solutions in milliseconds. Users can also dynamically modify the puzzle by inputting values into empty boxes and check their solutions for accuracy. 
 
-<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/home_demo.png?raw=true">
+	<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/home_demo.png?raw=true">
 
  - Online Puzzles
 
- This app uses BeautifulSoup web scrapping tools to extract random/daily Sudokus from many online sources, each with varying difficulty levels. Some are easy, some are so hard that takes 40+ seconds for the most advanced solver algorithm to handle. Users can choose from a wide range of sources and click on a button to pull puzzles from that source, making it easy to find the perfect Sudoku challenge. 
+ 	This app uses BeautifulSoup web scrapping tools to extract random/daily Sudokus from many online sources, each with varying difficulty levels. Some are easy, some are so hard that takes 40+ seconds for the most advanced solver algorithm to handle. Users can choose from a wide range of sources and click on a button to pull puzzles from that source, making it easy to find the perfect Sudoku challenge. 
 
-<img width="75%" alt="Sudoku_w_ease_find_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/find_demo.png?raw=true">
+	<img width="75%" alt="Sudoku_w_ease_find_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/find_demo.png?raw=true">
 
  - Upload puzzles
 
- This app enables user upload of custome Sudoku puzzles. It analyzes the Sudoku and offers instant solution.
+ 	This app enables user upload of custome Sudoku puzzles. It analyzes the Sudoku and offers instant solution.
 
-<img width="75%" alt="Sudoku_w_ease_upload_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/upload_demo.png?raw=true">
+	<img width="75%" alt="Sudoku_w_ease_upload_demo" src="https://github.com/YichenGuo2002/SudokuW-Ease/blob/main/src/assets/upload_demo.png?raw=true">
 
  - Optimal Algorithm
 
- This app introduces a variety of published Sudoku algorithms, each with their own strengths and weaknesses. Here is a brief introduction about what constraint satisfaction and depth-first search are and how they are utilized in this program.
+ 	This app introduces a variety of published Sudoku algorithms, each with their own strengths and weaknesses. Here is a brief introduction about what constraint satisfaction and depth-first search are and how they are utilized in this program.
 
 Isn't that cool? Just go out and have fun without worrying about the plans!
 
@@ -100,7 +100,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 **2023 Summer**: 
 - [ ] Finish current features; 
 - [x] Refactor RESTful APIs to GraphQL APIs; 
-- [ ] Connect to PostgreSQL; 
+- [x] Connect to PostgreSQL; 
 - [ ] Set up CI/CD pipeline;
 - [ ] Improve performance: Vue takes a lot of load time;
 - [ ] Optimize system error handling;
@@ -123,7 +123,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
 - (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL database integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
 - (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables. Implemented basic backend function logic. Still need to consider error handling. :anguished:
-- (06/28/23): *Write backend functions.*
+- (06/28/23): Implemented front end user interfaces. Write backend functions.
 - (06/29/23): *Research about how to update Vue environment/context for "signed in" and "signed out" status. Implement user login and logout logic.*
 - (06/30/23): *Implement preload.js fetch API functions.*
 

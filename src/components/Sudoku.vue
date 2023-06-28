@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  const {solve, scrape} = window.electron;
+  const {solve} = window.electron;
 
   const printTable = (sudoku, size) =>{
         let result = "";

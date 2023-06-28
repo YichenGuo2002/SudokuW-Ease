@@ -1,5 +1,5 @@
 <template>
-    <div class = "ml-48 mt-16 px-4 py-2 mb-4 text-black flex-1 bg-grey-lightest">
+    <div class = "main-container">
         <p>Select your Sudoku of size:
         <button @click = "puzzle.size = 4; puzzle.sudoku = Array(16)" class = "select-but">4×4</button>
         <button @click = "puzzle.size = 9; puzzle.sudoku = Array(81)" class = "select-but">9×9</button>

@@ -25,5 +25,20 @@ export default createRouter({
       name: 'About',
       component: () => import('./views/About.vue')
     },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('./views/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('./views/Register.vue')
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: () => import('./views/User.vue')
+    },
   ]
 })

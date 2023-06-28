@@ -48,8 +48,10 @@
             </button>
             <button v-if="isOpen" @click = "isOpen = false" tabindex = "-1" class = "fixed pin h-full w-full cursor-default"></button>
             <div v-if="isOpen" class="absolute pin-r mt-2 bg-grey-lighter rounded-lg py-2 w-32 shadow-lg">
-                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
-                    <router-link :to="'/home'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
+                    <router-link :to="'/login'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
+                    <router-link :to="'/register'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Register</router-link>
+                    <router-link :to="'/user'" class="block px-4 py-2 text-black no-underline hover:bg-grey">User</router-link>
+                    <router-link :to="'/'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
             </div>
         </div>
 
