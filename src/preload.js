@@ -67,7 +67,7 @@ const solve = async (sudoku, size) =>{
 }
 
 // Scraping Sudoku puzzles(Find page requests)
-const scrape = async (index, difficulty) =>{
+const scrape = async (index, difficulty = "") =>{
     const query = `mutation ScrapeSudoku{
         scrapeSudoku(
               index:${index},
@@ -101,6 +101,223 @@ const scrape = async (index, difficulty) =>{
         console.log(response)
         return response.data.scrapeSudoku
     })
+}
+
+const register = async (email, password, name) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
+}
+
+const login = async (email, password) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
+}
+
+const removeUser = async (userId) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
+}
+
+const fav = async (sudoku, userId) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
+}
+
+// Scraping Sudoku puzzles(Find page requests)
+const getFav = async (userId) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
+}
+
+const removeFav = async (sudokuId, userId) =>{
+    /*const query = `mutation ScrapeSudoku{
+        scrapeSudoku(
+              index:${index},
+              difficulty:${JSON.stringify(difficulty)}
+          ) 
+          {
+         sudoku,
+              size,
+              difficulty
+        }
+      }
+    `;
+    console.log(query)
+    return await fetch(URL, {
+    // Adding method type
+    method: "POST",
+    // Adding body or contents to send
+    body: JSON.stringify({
+        query: query
+    }),
+    // Adding headers to the request
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    })
+    // Converting to JSON
+    .then((response) => {
+        return response.json()
+    }).then((response) =>{
+        console.log(response)
+        return response.data.scrapeSudoku
+    })*/
 }
 
 /*

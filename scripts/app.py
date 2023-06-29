@@ -10,6 +10,8 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 import config
 from user import register, login, removeUser, fav, getFav, removeFav
+from graphene_sqlalchemy import SQLAlchemyObjectType
+from sqlalchemy.dialects.postgresql import ARRAY
 
 def generate_execution_id():
     # Generate a UUID as the execution ID
@@ -47,7 +49,7 @@ class Sudoku(db.Model):
     __tablename__ = 'sudoku_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    sudoku = db.Column(db.ARRAY(db.Integer))
+    sudoku = db.Column(ARRAY(db.Integer))
     userId = db.Column(db.Integer, db.ForeignKey('user_table.id'))
 
     def __init__(self, sudoku, userId):
@@ -56,6 +58,14 @@ class Sudoku(db.Model):
  
     def __repr__(self):
         return 'Sudoku number {sudokuId} is {sudoku}.'.format(sudokuId = self.userId, sudoku = self.sudoku)
+
+class UserObject(SQLAlchemyObjectType):
+    class Meta:
+        model = User
+
+class SudokuObject(SQLAlchemyObjectType):
+    class Meta:
+        model = Sudoku
 
 #sockets = FlaskWebSocket(app)
 
@@ -165,7 +175,82 @@ class ScrapeSudoku(graphene.Mutation):
         # sockets.emit('function_update', {'execution_id': execution_id, 'text': 'Finished.'})
 
         return result
-        
+
+class Register(graphene.Mutation):
+    class Arguments:
+        email = graphene.String(required=True)
+        password = graphene.String(required=True)
+        name = graphene.String(required=True)
+
+    user = graphene.Field(UserObject)  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, email, password, name):
+        # Check if email already exists
+        if User.query.filter_by(email=email).first():
+            return None  # Email already exists, return None or raise an exception
+
+        new_user = register(db, Sudoku, User, email=email, password=password, name=name)
+        return Register(user = new_user)
+
+class Login(graphene.Mutation):
+    class Arguments:
+        email = graphene.String(required=True)
+        password = graphene.String(required=True)
+
+    user = graphene.Field(UserObject)  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, email, password):
+        user = login(db, Sudoku, User, email=email, password=password)
+        return Login(user = user)
+    
+class RemoveUser(graphene.Mutation):
+    class Arguments:
+        userId = graphene.Int(required=True)
+
+    success = graphene.Boolean()  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, userId):
+        success = removeUser(db, Sudoku, User, userId = userId)
+        return RemoveUser(success = success)
+
+class Fav(graphene.Mutation):
+    class Arguments:
+        sudoku = graphene.List(graphene.Int, required=True)
+        userId = graphene.Int(required=True)
+
+    success = graphene.Boolean()  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, sudoku, userId):
+        success = fav(db, Sudoku, User, sudoku = sudoku, userId = userId)
+        return Fav(success = success)
+
+class GetFav(graphene.Mutation):
+    class Arguments:
+        userId = graphene.Int(required=True)
+
+    fav_sudokus = graphene.List(Sudoku, required=False)  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, userId):
+        fav_sudokus = getFav(db, Sudoku, User, userId = userId)
+        if fav_sudokus is not None:
+            sudoku_objects = [Sudoku(values=sudoku) for sudoku in fav_sudokus]
+            return Fav(fav_sudokus = sudoku_objects)
+            # Empty list or list with elements
+        else:
+            return Fav(None)
+            # User does not exist
+
+class RemoveFav(graphene.Mutation):
+    class Arguments:
+        sudokuId = graphene.Int(required=True)
+        userId = graphene.Int(required=True)
+
+    success = graphene.Boolean()  # Assuming you have defined the User type in your schema
+
+    def mutate(self, info, sudokuId, userId):
+        success = removeFav(db, Sudoku, User, sudokuId = sudokuId, userId = userId)
+        return RemoveFav(success = success)
+            
 '''
 class Query(graphene.ObjectType):
     # Add any necessary query fields here
@@ -175,6 +260,12 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     solve_sudoku = SolveSudoku.Field()
     scrape_sudoku = ScrapeSudoku.Field()
+    register = Register.Field()
+    login = Login.Field()
+    remove_user = RemoveUser.Field()
+    fav = Fav.Field()
+    get_fav = GetFav.Field()
+    remove_fav = RemoveFav.Field()
 
 '''
 class Subscription(graphene.ObjectType):

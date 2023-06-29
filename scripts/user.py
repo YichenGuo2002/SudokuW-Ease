@@ -1,5 +1,6 @@
 #from model import db
 
+
 '''
 ## Email restrictions: 
 Maximum email length <= 60
@@ -59,16 +60,21 @@ def removeUser(db, Sudoku, User, userId):
 Array length is one of 16, 81, 256, and 625.
 '''
 def fav(db, Sudoku, User, sudoku, userId):
-    # Create a new Sudoku instance
-    new_sudoku = Sudoku(sudoku=sudoku, userId=userId)
-    db.session.add(new_sudoku)
-    db.session.commit()
+    try:
+        # Create a new Sudoku instance
+        new_sudoku = Sudoku(sudoku=sudoku, userId=userId)
+        db.session.add(new_sudoku)
+        db.session.commit()
 
-    # Retrieve the corresponding user
-    user = User.query.get(userId)
+        # Retrieve the corresponding user
+        user = User.query.get(userId)
 
-    # Add the Sudoku's ID to the user's favorite list
-    user.add_fav(new_sudoku)
+        # Add the Sudoku's ID to the user's favorite list
+        user.add_fav(new_sudoku)
+        return True
+    except Exception as err:
+        print(err)
+        return False
 
 def getFav(db, Sudoku, User, userId):
     # Retrieve the user object with the provided userId

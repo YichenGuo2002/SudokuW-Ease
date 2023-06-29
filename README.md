@@ -123,8 +123,8 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 *Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
 - (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL database integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
 - (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables. Implemented basic backend function logic. Still need to consider error handling. :anguished:
-- (06/28/23): Implemented front end user interfaces. Write backend functions.
-- (06/29/23): *Research about how to update Vue environment/context for "signed in" and "signed out" status. Implement user login and logout logic.*
+- (06/28/23): Implemented front end user login, register, and dashboard interfaces. Optimized frontend styling. Write backend functions.
+- (06/29/23): Built GraphQL endpoints for calling backend functions. Tested queries, and connected graphene with sqlalchemy to return data model via graphene resolvers. Decided to implement Alembic for schema change and database migration.
 - (06/30/23): *Implement preload.js fetch API functions.*
 
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
@@ -185,6 +185,49 @@ mutation ScrapeSudoku{
 		difficulty
   }
 }
+
+mutation Register{
+  register(
+		email:"****@***",
+		password:"***",
+		name:"***"
+	)
+	{
+   user{
+		id,
+		email,
+		name
+		}
+  }
+}
+
+mutation Login{
+  login(
+		email:"****@***",
+		password:"***"
+	)
+	{
+   user{
+		id,
+		email,
+		name,
+		fav{
+			sudoku
+			}
+		}
+  }
+}
+
+mutation RemoveUser{
+  removeUser(
+		userId: 1,
+	)
+	{
+   success
+	}
+}
+
+
 ```
 4. Create PostgreSQL models:
 Go to python shell by running python and return:
