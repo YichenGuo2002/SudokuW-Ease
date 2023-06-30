@@ -125,7 +125,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables. Implemented basic backend function logic. Still need to consider error handling. :anguished:
 - (06/28/23): Implemented front end user login, register, and dashboard interfaces. Optimized frontend styling. Write backend functions.
 - (06/29/23): Built GraphQL endpoints for calling backend functions. Tested queries, and connected graphene with sqlalchemy to return data model via graphene resolvers. Decided to implement Alembic for schema change and database migration.
-- (06/30/23): *Implement preload.js fetch API functions.*
+- (06/30/23): Successfully debugged backend functions (Turned out that I defined the class Sudoku twice. Took me a really long time to figure it out). :skull: Successfully set up frontend GraphQL request functions and connected to login/register page. Still need to incorporate validation and connect to other graph interfaces (create a "favorite" sudoku presentation model). :relieved:
 
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
 
@@ -227,6 +227,43 @@ mutation RemoveUser{
 	}
 }
 
+mutation Fav{
+  fav(
+		sudoku:[1,2,3],
+		userId: 1,
+	)
+	{
+   success
+	}
+}
+
+
+mutation GetFav{
+  getFav(
+		userId:1
+	)
+	{
+   favSudokus{
+		sudoku,
+		id,
+		userId,
+		user{
+			name,
+			email
+		}
+	}
+	}
+}
+
+mutation RemoveFav{
+  removeFav(
+		userId:2,
+		sudokuId:1
+	)
+	{
+   success
+	}
+}
 
 ```
 4. Create PostgreSQL models:

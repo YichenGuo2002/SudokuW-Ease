@@ -1,4 +1,5 @@
 #from model import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 '''
@@ -46,8 +47,8 @@ def login(db, Sudoku, User, email, password):
     else:
         return None
 
-def removeUser(db, Sudoku, User, userId):
-    user = User.query.get(userId)
+def removeUser(db, Sudoku, User, user_id):
+    user = User.query.get(user_id)
     if user:
         db.session.delete(user)
         db.session.commit()
@@ -59,49 +60,44 @@ def removeUser(db, Sudoku, User, userId):
 ## Sudoku restrictions:
 Array length is one of 16, 81, 256, and 625.
 '''
-def fav(db, Sudoku, User, sudoku, userId):
+def fav(db, Sudoku, User, sudoku, user_id):
     try:
         # Create a new Sudoku instance
-        new_sudoku = Sudoku(sudoku=sudoku, userId=userId)
+        new_sudoku = Sudoku(sudoku = sudoku, user_id = user_id)
         db.session.add(new_sudoku)
         db.session.commit()
 
-        # Retrieve the corresponding user
-        user = User.query.get(userId)
-
+       # Retrieve the corresponding user
+        user = User.query.get(user_id)
         # Add the Sudoku's ID to the user's favorite list
         user.add_fav(new_sudoku)
+        db.session.commit()
         return True
     except Exception as err:
         print(err)
         return False
 
-def getFav(db, Sudoku, User, userId):
+def getFav(db, Sudoku, User, user_id):
     # Retrieve the user object with the provided userId
-    user = User.query.get(userId)
+    user = User.query.get(user_id)
 
     if user:
         # Retrieve the user's favorite list of Sudokus
         fav_list = user.fav
 
-        # Retrieve the Sudoku data for each Sudoku ID in the favorite list
-        fav_sudokus = []
-        for sudoku in fav_list:
-            fav_sudoku = Sudoku.query.get(sudoku.id)
-            fav_sudokus.append(fav_sudoku)
-        return fav_sudokus
+        return fav_list
     else:
         return None
 
-def removeFav(db, Sudoku, User, sudokuId, userId):
+def removeFav(db, Sudoku, User, sudoku_id, user_id):
        # Retrieve the user object with the provided userId
-    user = User.query.get(userId)
+    user = User.query.get(user_id)
 
     if user:
         # Retrieve the Sudoku object with the provided sudokuId
-        sudoku = Sudoku.query.get(sudokuId)
+        sudoku = Sudoku.query.get(sudoku_id)
 
-        if sudoku:
+        if sudoku and sudoku.user_id == user_id:
             # Remove the Sudoku from the user's favorite list
             user.fav.remove(sudoku)
             db.session.commit()

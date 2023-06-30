@@ -104,19 +104,21 @@ const scrape = async (index, difficulty = "") =>{
 }
 
 const register = async (email, password, name) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
-          {
-         sudoku,
-              size,
-              difficulty
-        }
-      }
+    const query = `mutation Register{
+    register(
+		email:"${email}",
+		password:"${password}",
+		name:"${name}"
+	)
+	{
+   user{
+		id,
+		email,
+		name
+		}
+    }
+    }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -135,24 +137,28 @@ const register = async (email, password, name) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.register
+    })
 }
 
 const login = async (email, password) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
-          {
-         sudoku,
-              size,
-              difficulty
-        }
-      }
+    const query = `mutation Login{
+    login(
+		email:"${email}",
+		password:"${password}"
+	)
+	{
+   user{
+		id,
+		email,
+		name,
+		fav{
+			sudoku
+			}
+		}
+    }
+    }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -171,24 +177,20 @@ const login = async (email, password) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.login
+    })
 }
 
 const removeUser = async (userId) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
-          {
-         sudoku,
-              size,
-              difficulty
-        }
-      }
+    const query = `mutation RemoveUser{
+    removeUser(
+		userId:${userId},
+	)
+	{
+    success
+	}
+    }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -207,24 +209,22 @@ const removeUser = async (userId) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.removeUser
+    })
 }
 
 const fav = async (sudoku, userId) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
-          {
-         sudoku,
-              size,
-              difficulty
+    const query = `
+        mutation Fav{
+        fav(
+                sudoku:${JSON.stringify(sudoku)},
+                userId:${userId},
+            )
+            {
+        success
+            }
         }
-      }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -243,25 +243,29 @@ const fav = async (sudoku, userId) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.fav
+    })
 }
 
 // Scraping Sudoku puzzles(Find page requests)
 const getFav = async (userId) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
-          {
-         sudoku,
-              size,
-              difficulty
+    const query = `mutation GetFav{
+        getFav(
+                userId:${userId}
+            )
+            {
+        favSudokus{
+                sudoku,
+                id,
+                userId,
+                user{
+                    name,
+                    email
+                }
+            }
+            }
         }
-      }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -280,24 +284,21 @@ const getFav = async (userId) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.getFav
+    })
 }
 
 const removeFav = async (sudokuId, userId) =>{
-    /*const query = `mutation ScrapeSudoku{
-        scrapeSudoku(
-              index:${index},
-              difficulty:${JSON.stringify(difficulty)}
-          ) 
+    const query = `mutation RemoveFav{
+        removeFav(
+              userId:${userId},
+              sudokuId:${sudokuId}
+          )
           {
-         sudoku,
-              size,
-              difficulty
-        }
+         success
+          }
       }
     `;
-    console.log(query)
     return await fetch(URL, {
     // Adding method type
     method: "POST",
@@ -316,8 +317,8 @@ const removeFav = async (sudokuId, userId) =>{
         return response.json()
     }).then((response) =>{
         console.log(response)
-        return response.data.scrapeSudoku
-    })*/
+        return response.data.removeFav
+    })
 }
 
 /*
@@ -351,9 +352,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 electron.contextBridge.exposeInMainWorld('electron', {
     solve, // Expose the solve function
-    scrape// Expose the scrape function
+    scrape,// Expose the scrape function
     //socket_on, // Expose the socket_on function
     //socket_off // Expose the socket_off function
+    register,
+    login,
+    removeUser,
+    fav,
+    getFav,
+    removeFav
 });
 
 
