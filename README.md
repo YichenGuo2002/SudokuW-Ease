@@ -120,7 +120,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/21/23): Implemented SocketIO front end to send requests. Failed, couldn't find Socket.io-client module, and started troubleshooting.
 - (06/22/23): Switched to WebSockets front end to send requests. Modified Electron Windows option to enable web socket, but failed again for unknown reason. Decided that WebSocket is taking too long to implement and commented out this part for further implementation. This week, focus on connecting to PostgreSQL first. :mask:
 
-*Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL. Part II.*
+*Summer Week 6/10 Plan: Set up user system. Connect Application to PostgreSQL:heavy_check_mark:. Part II.*
 - (06/26/23): Outlined system design and database design. Researched about PostgreSQL data types. Wrote [lab doc for system design, database design, and WebSockets](./doc/SudokuW_Ease%20Lab%202%20Web%20Socket%20%26%20Database%20Design.pdf). Planned to implement PostgreSQL database integration and user system. Initiated PostgreSQL models and functions. :sweat_drops:
 - (06/27/23): Installed PostgreSQL and pgAdmin. Configured PostgreSQL, established connection, and created data tables. Implemented basic backend function logic. Still need to consider error handling. :anguished:
 - (06/28/23): Implemented front end user login, register, and dashboard interfaces. Optimized frontend styling. Write backend functions.
