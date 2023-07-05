@@ -86,6 +86,10 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 	<img width="80%" alt="User Database Design" src="./doc/user%20table.png">
 	<img width="60%" alt="Sudoku Database Design" src="./doc/sudoku%20table.png">
 
+ - User System Pathways
+	<img width="80%" alt="User Database Design" src="./doc/user%20paths.png">
+	<img width="60%" alt="Sudoku Database Design" src="./doc/save%20paths.png">
+
  - Error Handling
 
 	Coming up.
@@ -128,6 +132,9 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/30/23): Successfully debugged backend functions (Turned out that I defined the class Sudoku twice. Took me a really long time to figure it out). :skull: Successfully set up frontend GraphQL request functions and connected to login/register page. Still need to incorporate validation and connect to other graph interfaces (create a "favorite" sudoku presentation model). :relieved:
 
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
+- (07/05/23): Designed and implemented email, password, and username validation and user login/registration pathways. Drew happy and unhappy paths for user system and successfully connected to user dashboard. Still need to implement save feature on Sudoku component, and a global store to save user information.
+- (07/06/23): *Implement Pinia global store and connect to login page: upload user data to store after successful login*
+- (07/07/23): *Implement Save feature and create small Sudoku component*
 
 *Summer Week 8/10 Plan: Improve performance: Reduce latency.*
 

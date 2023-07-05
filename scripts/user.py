@@ -9,9 +9,6 @@ Allowed characters:
 latin letters (a-z).
 numbers (0-9).
 special characters: underscores (_), periods (.), and dashes (-).
-A period (.) is not permitted at the start or end.
-Consecutive periods or special characters (e.g., john…doe@company.com) are not allowed.
-Special characters should be followed by one or more letters or numbers.
 Must include an at sign (@).
 
 ## Password restrictions:
@@ -20,14 +17,12 @@ Maximum password length <= 24
 Require at least one lowercase letter
 Require at least one uppercase letter
 Require at least one number
-Require at least one of the following characters: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 
 ## Name restrictions:
 Allowed characters:
 latin letters (a-z).
 numbers (0-9).
 special characters: underscores (_), periods (.), and dashes (-). 
-Usernames cannot contain an ampersand (&), equals sign (=), apostrophe ('), dash (-), plus sign (+), comma (,), brackets (<,>), or more than one period (.) in a row.
 Maximum username length <= 24
 '''
 def register(db, Sudoku, User, email, password, name):
