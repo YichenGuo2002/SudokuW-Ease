@@ -87,8 +87,11 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 	<img width="60%" alt="Sudoku Database Design" src="./doc/sudoku%20table.png">
 
  - User System Pathways
-	<img width="80%" alt="User Database Design" src="./doc/user%20paths.png">
-	<img width="60%" alt="Sudoku Database Design" src="./doc/save%20paths.png">
+
+	The user system is set up with multiple error handling functions to send accurate error description if any step of the pipeline breaks down. The "save" Sudoku feature is connected to Pinia global store to ensure a smooth experience for both logged-in and non-logged-in users.
+
+	<img width="100%" alt="User Database Design" src="./doc/user%20paths.png">
+	<img width="80%" alt="Sudoku Database Design" src="./doc/save%20paths.png">
 
  - Error Handling
 
