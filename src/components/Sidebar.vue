@@ -195,12 +195,15 @@
 </template>
 
 <script>
+    import {useUserStore} from '@/user'
 
-export default{
-    data(){
-        return{
-            isOpen:false
-        }
-    },
-}
+    const store = useUserStore()
+
+    export default{
+        data(){
+            return{
+                isOpen:false
+            }
+        },
+    }
 </script>

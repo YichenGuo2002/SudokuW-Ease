@@ -24,6 +24,9 @@
 
 <script>
     const {login} = window.electron;
+    import { useUserStore } from '@/user'
+
+    const store = useUserStore()
     const messages = [
         'Email not valid.',
         'Password not valid',
@@ -82,6 +85,9 @@
 
                 if(loginUser && loginUser != null){
                     console.log(loginUser)
+                    store.defineName(loginUser.name);
+                    store.defineId(loginUser.id);
+                    store.defineEmail(loginUser.email);
                     this.$router.push({name:'User', query: {
                         id:loginUser.id,
                         name:loginUser.name,

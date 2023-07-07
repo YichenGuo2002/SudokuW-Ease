@@ -136,8 +136,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 
 *Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
 - (07/05/23): Designed and implemented email, password, and username validation and user login/registration pathways. Drew happy and unhappy paths for user system and successfully connected to user dashboard. Still need to implement save feature on Sudoku component, and a global store to save user information.
-- (07/06/23): *Implement Pinia global store and connect to login page: upload user data to store after successful login*
-- (07/07/23): *Implement Save feature and create small Sudoku component*
+- (07/07/23): Implemented Pinia global store and connect to login page: upload user data to store after successful login. Established save feature for Sudoku component to save user's favorite list of Sudokus. Still need to connect Pinia to sidebar user panel, register page, Sudoku page, etc. 
 
 *Summer Week 8/10 Plan: Improve performance: Reduce latency.*
 

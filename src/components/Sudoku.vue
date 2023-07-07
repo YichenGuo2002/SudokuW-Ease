@@ -7,7 +7,7 @@
       <button @click = "localSolve" class = "select-but">Solve</button>
       <button @click = "localCheck" class = "select-but">Check</button>
       <button @click = "localClear" class = "select-but">Clear</button>
-      <button @click = "" class = "select-but">Save</button>
+      <button @click = "localSave" class = "select-but">Save</button>
     </div>
     <div class = "flex-1 m-2" id = "message-panel">
       <p>{{message}}</p>
@@ -16,8 +16,10 @@
 </template>
 
 <script>
-  const {solve} = window.electron;
+  const {solve, fav} = window.electron;
+  import {useUserStore} from '@/user'
 
+  const store = useUserStore()
   const printTable = (sudoku, size) =>{
         let result = "";
         const boxSize = Math.sqrt(size);
@@ -166,6 +168,27 @@
           this.message = "Check passed."
         }else{
           this.message = "Check failed."
+        }
+      },
+      async localSave (){
+        if(store.userObject && store.userObject != null){
+          let user = store.userObject
+          let arr = collect()
+          if(arr.every(item => item === 0)){
+            this.message = "Empty Sudoku. Failed to save!"
+          }else{
+            fav(arr, user.id)
+            .then((response)=> {
+                if(response.success){
+                  this.message = "Successfully saved to your list!"
+                }else{
+                  this.message = "Saving failed. Try again later!"
+                }
+            })
+          }
+
+        }else{
+          this.message = "You haven't signed in."
         }
       }
     }
