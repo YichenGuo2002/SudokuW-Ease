@@ -24,7 +24,7 @@
 
 <script>
     const {login} = window.electron;
-    import { useUserStore } from '@/user'
+    import {useUserStore} from '@/user'
 
     const store = useUserStore()
     const messages = [
@@ -88,11 +88,7 @@
                     store.defineName(loginUser.name);
                     store.defineId(loginUser.id);
                     store.defineEmail(loginUser.email);
-                    this.$router.push({name:'User', query: {
-                        id:loginUser.id,
-                        name:loginUser.name,
-                        email:loginUser.email
-                    }})
+                    this.$router.push({name:'User'})
                     return
                 }else{
                     this.error = messages[3]

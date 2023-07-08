@@ -29,6 +29,9 @@
 
 <script>
     const {register} = window.electron;
+    import {useUserStore} from '@/user'
+
+    const store = useUserStore()
     const messages = [
         'Email not valid.',
         'Password length should be between 6 and 24. Must include one uppercase, one lowercase letter, and one numerical number.',
@@ -123,11 +126,10 @@
 
                 if(newUser && newUser != null){
                     console.log(newUser)
-                    this.$router.push({name:'User', query: {
-                        id:newUser.id,
-                        name:newUser.name,
-                        email:newUser.email
-                    }})
+                    store.defineName(newUser.name);
+                    store.defineId(newUser.id);
+                    store.defineEmail(newUser.email);
+                    this.$router.push({name:'User'})
                     return
                 }else{
                     this.error = messages[4]

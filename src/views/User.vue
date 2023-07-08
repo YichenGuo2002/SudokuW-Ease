@@ -12,7 +12,7 @@
         
         <div class = "p-8">
             <p class="text-base mb-2">{{favSudokus.length != 0 ?
-             'My Favorite List of Sudokus:':
+             `My Favorite List of Sudokus: ${favSudokuStrings}`:
              "You haven't saved any Sudokus. Start saving Sudoku puzzles!"}}</p>
             
             <button @click = "test()" class="select-but" type="button">
@@ -25,24 +25,33 @@
 
 <script>
     const {getFav} = window.electron;
+    import {useUserStore} from '@/user'
+
     export default{
-        data() {
-                return {
-                    user:{},
-                    favSudokus:[]
-                };
-        },
-        mounted() {
-            if(this.$route.query){
-                this.user = this.$route.query;
+        mounted(){
+            const store = useUserStore()
+            if (store && store.userObject && store.userObject != null) {
+                this.user = store.userObject
                 if(this.user.id){
                     getFav(this.user.id)
                     .then((response)=> {
                         console.log("Favorite Sudokus",response.favSudokus)
                         this.favSudokus = response.favSudokus
+                        for(let i = 0; i < this.favSudokus.length; i++){
+                            this.favSudokuStrings.push(i + this.favSudokus[i].sudoku + "\n")
+                        }
                     })
                 }
+            }else {
+                this.$router.push({name:'Home'}) 
             }
+        },
+        data() {
+                return {
+                    user:{},
+                    favSudokus:[],
+                    favSudokuStrings:[]
+                };
         },
         methods:{
             test(){

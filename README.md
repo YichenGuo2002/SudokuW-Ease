@@ -134,9 +134,10 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (06/29/23): Built GraphQL endpoints for calling backend functions. Tested queries, and connected graphene with sqlalchemy to return data model via graphene resolvers. Decided to implement Alembic for schema change and database migration.
 - (06/30/23): Successfully debugged backend functions (Turned out that I defined the class Sudoku twice. Took me a really long time to figure it out). :skull: Successfully set up frontend GraphQL request functions and connected to login/register page. Still need to incorporate validation and connect to other graph interfaces (create a "favorite" sudoku presentation model). :relieved:
 
-*Summer Week 7/10 Plan: Packaging. Set up CI/CD Pipeline.*
+*Summer Week 7/10 ~~Plan: Packaging. Set up CI/CD Pipeline.~~ Modified: Set up Pinia store and user system. Part III.*
 - (07/05/23): Designed and implemented email, password, and username validation and user login/registration pathways. Drew happy and unhappy paths for user system and successfully connected to user dashboard. Still need to implement save feature on Sudoku component, and a global store to save user information.
 - (07/07/23): Implemented Pinia global store and connect to login page: upload user data to store after successful login. Established save feature for Sudoku component to save user's favorite list of Sudokus. Still need to connect Pinia to sidebar user panel, register page, Sudoku page, etc. 
+- (07/08/23): Connected Pinia to sidebar panel, register page, and Sudoku page. Still working on developing a small Sudoku module for displaying favorite Sudokus and adding a remove feature to it. :see_no_evil:
 
 *Summer Week 8/10 Plan: Improve performance: Reduce latency.*
 

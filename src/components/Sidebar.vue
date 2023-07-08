@@ -48,10 +48,8 @@
             </button>
             <button v-if="isOpen" @click = "isOpen = false" tabindex = "-1" class = "fixed pin h-full w-full cursor-default"></button>
             <div v-if="isOpen" class="absolute pin-r mt-2 bg-grey-lighter rounded-lg py-2 w-32 shadow-lg">
-                    <router-link :to="'/login'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign In</router-link>
-                    <router-link :to="'/register'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Register</router-link>
-                    <router-link :to="'/user'" class="block px-4 py-2 text-black no-underline hover:bg-grey">User</router-link>
-                    <router-link :to="'/'" class="block px-4 py-2 text-black no-underline hover:bg-grey">Sign Out</router-link>
+                    <router-link :to="sidebarLink[0]" class="block px-4 py-2 text-black no-underline hover:bg-grey">{{sidebarText[0]}}</router-link>
+                    <router-link :to="sidebarLink[1]" class="block px-4 py-2 text-black no-underline hover:bg-grey">{{sidebarText[1]}}</router-link>
             </div>
         </div>
 
@@ -197,9 +195,27 @@
 <script>
     import {useUserStore} from '@/user'
 
-    const store = useUserStore()
+    //const store = useUserStore()
 
     export default{
+        computed: {
+            sidebarText() {
+                const store = useUserStore()
+                if (store && store.userObject && store.userObject != null) {
+                    return ['User', 'Log Out'];
+                } else {
+                    return ['Sign Up', 'Log In'];
+                }
+            },
+            sidebarLink() {
+                const store = useUserStore()
+                if (store && store.userObject && store.userObject != null) {
+                    return ['/user', '/']; // Change these to the appropriate routes
+                } else {
+                    return ['/register', '/login']; // Change these to the appropriate routes
+                }
+            }
+        },
         data(){
             return{
                 isOpen:false
