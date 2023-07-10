@@ -140,6 +140,7 @@ Overall, this project utilizes a client-server architecture with a multi-tier st
 - (07/08/23): Connected Pinia to sidebar panel, register page, and Sudoku page. Still working on developing a small Sudoku module for displaying favorite Sudokus and adding a remove feature to it. :see_no_evil:
 
 *Summer Week 8/10 Plan: Improve performance: Reduce latency.*
+- (07/10/23): Started Favorite Sudoku component.
 
 *Summer Week 9/10 Plan: (tbd) Secure application delivery using AWS AppStream 2.0. Part I*
 
